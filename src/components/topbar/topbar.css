@@ -1,0 +1,12 @@
+#topbar{
+    position: absolute;
+    top: 0px;
+    background-color: #cccccc;
+    width: 100%;
+    height: 64px;
+    padding: 8px;
+    color: black;
+    font-size: 32px;
+    line-height: 64px;
+    text-align: left;
+}
