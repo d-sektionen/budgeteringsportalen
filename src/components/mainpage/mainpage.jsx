@@ -1,8 +1,17 @@
+import TextBox from './textbox/textbox.jsx';
 import './mainpage.css';
 
 function MainPage() {
+    const validFunc = (text) => {
+        // ändra till  
+        return text.length < 10;
+    };
+
     return <>
-        <div id="mainpage">Test</div>
+        <div id="mainPage">
+            <p>Test</p>
+            <TextBox validFunc={validFunc}></TextBox>
+        </div>
     </>
 }
 

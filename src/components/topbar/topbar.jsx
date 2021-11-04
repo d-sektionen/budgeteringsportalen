@@ -2,7 +2,7 @@ import './topbar.css';
 
 function TopBar() {
     return <>
-        <div id="topbar">Räkning till d-sektionen</div>
+        <div id="topBar">Räkning till d-sektionen</div>
     </>
 }
 
