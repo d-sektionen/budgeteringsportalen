@@ -1,9 +1,9 @@
 import './textbox.css';
 
 function TextBox({ validFunc }) {
-
+    //koppla validFunc till när text i rutan ändras
     return <>
-        <div class="inputTextBox">Test</div>
+        <div class="inputTextBox">Textbox</div>
     </>
 }
 
