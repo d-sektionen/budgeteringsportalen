@@ -6,7 +6,7 @@ function TopBar() {
         <div id="topBar">
             <FiMenu className="left"/>
             <span>Räkning till d-sektionen</span>
-            <FiUser className="Right"/>
+            <FiUser className="right"/>
         </div>
     </>
 }
