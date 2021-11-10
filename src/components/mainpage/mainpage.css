@@ -9,3 +9,38 @@
     color: white;
     background-color: #111111;
 }
+
+.textboxRow {
+    margin-top: 32px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    outline: 4px solid black;
+}
+
+#spec {
+    width: 100%;
+}
+
+#amount {
+    width: 33%;
+    float:left; 
+    outline: 1px solid black;
+}
+
+#price {
+    width: 33%;
+    float:left; 
+    outline: 1px solid black;
+}
+
+#sum {
+    width: 34%;
+    float:left; 
+    outline: 1px solid black;
+}
+
+#total {
+    clear:both;
+    width: 100%;
+}

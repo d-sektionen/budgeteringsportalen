@@ -8,11 +8,13 @@ function MainPage() {
 
     return <>
         <div id="mainPage">
-            <TextBox title={"Specifikation"} temp={"WebbU-hoodie"}></TextBox>
-            <TextBox title={"Antal"} temp={"8"}></TextBox>
-            <TextBox title={"Pris"} temp={"499"}></TextBox>
-            <TextBox title={"Summa"} temp={"3992"}></TextBox>
-            <TextBox title={"Totalt"} temp={"3992"}></TextBox>
+            <div class="textboxRow">
+                <div id="spec"><TextBox title={"Specifikation"} temp={"WebbU-hoodie"}></TextBox></div>
+                <div id="amount"><TextBox title={"Antal"} temp={"8"}></TextBox></div>
+                <div id="price"><TextBox title={"Pris"} temp={"499"}></TextBox></div>
+                <div id="sum"><TextBox title={"Summa"} temp={"3992"}></TextBox></div>
+                <div id="total"><TextBox title={"Totalt"} temp={"3992"}></TextBox></div>
+            </div>
         </div>
     </>
 }
