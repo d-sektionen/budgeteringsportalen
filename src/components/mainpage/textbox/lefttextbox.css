@@ -1,4 +1,4 @@
-.temp {
+.l-temp {
     margin: 0px;
     font-size: 18px;
     text-align: left;
@@ -6,10 +6,12 @@
     padding:8px;
 }
 
-.title {
+.l-title {
     margin: 0px;
     font-size: 18px;
+    text-align: left;
     background-color: #212121;
-    text-align: center;
     padding:8px;
+    float: left;
+    width: 25%;
 }

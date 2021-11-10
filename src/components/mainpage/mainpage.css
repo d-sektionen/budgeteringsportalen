@@ -18,6 +18,14 @@
     outline: 4px solid black;
 }
 
+.warning {
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    color: red;
+}
+
 #spec {
     width: 100%;
 }
