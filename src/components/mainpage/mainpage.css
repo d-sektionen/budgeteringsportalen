@@ -2,7 +2,6 @@
     position: absolute;
     top: 64px;
     width: 100%;
-    height: 100%;
     padding: 8px;
     font-size: 18px;
     text-align: left;
@@ -13,6 +12,8 @@
 .textboxRow {
     margin-top: 32px;
     width: 50%;
+    max-width: 512px;
+    min-width: 448px;
     margin-left: auto;
     margin-right: auto;
     outline: 4px solid black;
@@ -23,6 +24,8 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    max-width: 512px;
+    min-width: 448px;
     color: red;
 }
 

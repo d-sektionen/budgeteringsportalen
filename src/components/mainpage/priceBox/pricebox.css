@@ -1,4 +1,4 @@
-.temp {
+.inputField {
     margin: 0px;
     font-size: 18px;
     text-align: left;
@@ -8,15 +8,4 @@
 
     width: calc(100% - 16px);
     outline: none;
-}
-
-
-
-
-.title {
-    margin: 0px;
-    font-size: 18px;
-    background-color: #212121;
-    text-align: center;
-    padding:8px;
 }

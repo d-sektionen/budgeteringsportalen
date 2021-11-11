@@ -1,18 +1,18 @@
-.l-temp {
+.t-temp {
     margin: 0px;
     font-size: 18px;
     text-align: left;
     background-color: #333333;
     padding:8px;
+    color:  white;
+    width: calc(100% - 16px);
+    outline: none;
 }
 
-.l-title {
+.t-title {
     margin: 0px;
     font-size: 18px;
-    text-align: left;
     background-color: #212121;
+    text-align: center;
     padding:8px;
-    float: left;
-    width: 25%;
-    min-width: 92px;
 }

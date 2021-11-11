@@ -2,7 +2,7 @@
 
 import "./button.css";
 
-function Button({ link, onClick, href, children }) {
+function Button({ link, onClick, href, children, title }) {
   /*
   return link ? (
     <Link to={link} onClick={onClick} className="button">
@@ -16,10 +16,12 @@ function Button({ link, onClick, href, children }) {
     )
   );
   */
-  return <>
-  <div class="button">
-      <p class="button-text">Logga in med LiU-ID</p>
-  </div>
-  </>
+  return href ? (
+    ( <div class="button">
+      <a class="button-text" href={href}> Logga in med LiU-ID </a>
+      </div>) 
+      ) : (<div class="button" onClick={() => onClick()}> 
+      <p class="button-text">{title}</p>
+      </div>)
 }
 export default Button;

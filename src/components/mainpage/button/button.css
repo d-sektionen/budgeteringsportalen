@@ -9,12 +9,15 @@
 	margin-right: auto;
 	
 	width: 50%;
+    max-width: 512px;
+    min-width: 448px;
 	font-size: 18px;
 	text-decoration: none;
 	text-align: center;
 	color: #FFF;
 	background: #212121;
     outline: 4px solid black;
+	cursor: pointer;
 
 	box-shadow:
 		inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
