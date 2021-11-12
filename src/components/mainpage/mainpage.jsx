@@ -17,7 +17,7 @@ function MainPage() {
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
         const access = urlParams.get("access");
-        let user = {}
+        //let user = {}
         if (access != null) {
           window.localStorage.setItem("token", access);
           window.history.replaceState({}, document.title, "/");
@@ -26,7 +26,7 @@ function MainPage() {
             setName(user.name)
           })
         } else if (
-          window.localStorage.getItem("token") != "null" ||
+          window.localStorage.getItem("token") !== "null" ||
           window.localStorage.getItem("token") != null
         ) {
           retrieveLiuid().then(user => {
@@ -49,8 +49,9 @@ function MainPage() {
             {liuid && <>
             <div class="textboxRow">
                 {/* Här ska det finnas en knapp som genererar en komponent som innehåller amount, price och sum-fälten */}
+                <PriceBox/>
                 {priceboxes.map(e => <PriceBox props={e}/>)}
-                <div id="total"><TextBox title={"Totalt"} temp={"3992"}></TextBox></div>
+                <div id="total"><TextBox title={"Totalt"} temp={"0"}></TextBox></div>
             </div>
             
             <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>

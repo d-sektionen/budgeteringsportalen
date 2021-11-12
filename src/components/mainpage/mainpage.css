@@ -27,6 +27,8 @@
     max-width: 512px;
     min-width: 448px;
     color: red;
+    background-color: #111111;
+    text-align: left;
 }
 
 #spec {

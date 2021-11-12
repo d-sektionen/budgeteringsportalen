@@ -1,5 +1,4 @@
 import './lefttextbox.css';
-import React, { useState } from 'react';
 
 function LeftTextBox({ title, temp }) {
     return <>
