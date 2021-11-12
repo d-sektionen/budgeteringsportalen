@@ -11,18 +11,8 @@ function MainPage() {
     const [liuid, setLiuid] = useState();
     const [name, setName] = useState();
     const [date, setDate] = useState();
+    const [priceboxes, setPriceBoxes] = useState([]);
     
-    let [priceboxes] = useState([]);
-
-    const addPriceBox = () => {
-        console.log(priceboxes)
-        priceboxes.push({
-            id: 0,
-            price:  0,
-            amount: 1
-        })
-        priceboxes = [...priceboxes]
-    }
 
     useEffect(()=>{
         const urlParams = new URLSearchParams(window.location.search);
@@ -59,11 +49,11 @@ function MainPage() {
             {liuid && <>
             <div class="textboxRow">
                 {/* Här ska det finnas en knapp som genererar en komponent som innehåller amount, price och sum-fälten */}
-                {/* priceboxes.map(e => <PriceBox props={e}/>) */}
+                {priceboxes.map(e => <PriceBox props={e}/>)}
                 <div id="total"><TextBox title={"Totalt"} temp={"3992"}></TextBox></div>
             </div>
             
-            <Button onClick={() => addPriceBox()} title="Lägg till utgift"></Button>
+            <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>
             <div class="textboxRow">
                 <div><Title titleText={"Kontouppgifter för överföring"}></Title></div>
                 <div><LeftTextBox title={"Clearing-nr"} temp={"8123-4"}></LeftTextBox></div>

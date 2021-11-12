@@ -12,14 +12,14 @@ function PriceBox(props){
     const amount = useRef();
     const sum = useRef();
     return (
-        <div class="textboxRow">
+        <div>
             <div id="spec">
                 <p>Specifikation</p>
                 <input class="inputField" title={"Specifikation"} required ref={spec}/>
             </div>
             <div id="price">
                 <p>Pris</p>
-                <input id="price" class="inputField" title={"pris"} required ref={price}/>
+                <input class="inputField" title={"pris"} required ref={price}/>
             </div>
             <div id="amount">
                 <p>Antal</p>
