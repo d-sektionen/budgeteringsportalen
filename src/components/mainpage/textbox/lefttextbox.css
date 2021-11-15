@@ -1,10 +1,12 @@
 .l-temp {
-    color: white;
     margin: 0px;
     font-size: 18px;
     text-align: left;
     background-color: #333333;
     padding:8px;
+    color:  white;
+    width: calc(75% - 18px);
+    outline: none;
 }
 
 .l-title {
@@ -14,6 +16,5 @@
     background-color: #212121;
     padding: 8px;
     float: left;
-    width: 25%;
-    min-width: 92px;
+    width: calc(25% - 18px);
 }
