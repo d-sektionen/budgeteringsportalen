@@ -4,7 +4,7 @@ function LeftTextBox({ title, temp }) {
     return <>
         <div class="inputTextBox">
             <p class="l-title">{title}</p>
-            <p class="l-temp">{temp}</p>
+            <input type="text" class="l-temp" placeholder={temp}/>
         </div>
     </>
 }
