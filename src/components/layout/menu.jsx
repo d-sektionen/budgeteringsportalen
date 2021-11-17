@@ -1,9 +1,9 @@
-import { useEffect, useContext, useState } from 'react'
-import { FiX, FiMenu, FiGithub } from 'react-icons/fi'
+import { useEffect, useContext, useState } from 'react';
+import { FiX, FiMenu, FiGithub } from 'react-icons/fi';
 
-import logo from '../../images/round.svg'
+import logo from '../../images/round.svg';
 
-import './menu.scss'
+import './menu.scss';
 
 const entries = [
 	'Översikt',
@@ -12,10 +12,10 @@ const entries = [
 	'Personligt utlägg',
 	'Översikt',
 	'Personligt utlägg',
-]
+];
 
 const Menu = () => {
-	const [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div className='menuContainer'>
@@ -57,7 +57,7 @@ const Menu = () => {
 			/>
 			{isOpen && <div className='darkOverlay' />}
 		</div>
-	)
-}
+	);
+};
 
-export default Menu
+export default Menu;

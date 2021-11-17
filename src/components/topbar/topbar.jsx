@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 import './topbar.css';
-import Menu from '../layout/menu'
+import Menu from '../layout/menu';
 
-import { FiMenu, FiUser } from 'react-icons/fi'
+import { FiMenu, FiUser } from 'react-icons/fi';
 
 const TopBar = () => {
 	return (
@@ -12,7 +12,7 @@ const TopBar = () => {
 			<span>Räkning till d-sektionen</span>
 			<FiUser />
 		</div>
-	)
-}
+	);
+};
 
 export default TopBar;
