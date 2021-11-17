@@ -1,7 +1,7 @@
 .menu {
-  height: 100vh;
+  height: 100%;
   width: 200px;
-
+  position: fixed;
   left: 0;
   top: 0;
 
@@ -14,13 +14,19 @@
   color: black;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
 .exit {
   justify-self: start;
   align-self: flex-start;
 }
 
 ul {
-  justify-self: flex-end;
+  justify-self: center;
+  align-self: center;
   background-color: green;
   bottom: 0;
 }

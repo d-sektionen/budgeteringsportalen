@@ -6,16 +6,13 @@ import Menu from '../layout/menu'
 import { FiMenu, FiUser } from 'react-icons/fi'
 
 const TopBar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  return (  
-    <div id="topBar">
-      {isOpen && <Menu />}
-      <FiMenu className="left" onClick={() => setIsOpen(!isOpen)}/> 
-      <span>Räkning till d-sektionen</span>
-      <FiUser className="right"/>
-    </div>
-  )
+	return (
+		<div id='topBar'>
+			<Menu />
+			<span>Räkning till d-sektionen</span>
+			<FiUser />
+		</div>
+	)
 }
 
 export default TopBar;
