@@ -1,14 +1,18 @@
-import './topbar.css';
-import { FiMenu, FiUser } from 'react-icons/fi'
+import { useState } from 'react';
 
-function TopBar() {
-    return <>
-        <div id="topBar">
-            <FiMenu className="left"/>
-            <span>Räkning till d-sektionen</span>
-            <FiUser className="right"/>
-        </div>
-    </>
-}
+import './topbar.css';
+import Menu from '../layout/menu';
+
+import { FiMenu, FiUser } from 'react-icons/fi';
+
+const TopBar = () => {
+	return (
+		<div id='topBar'>
+			<Menu />
+			<span>Räkning till d-sektionen</span>
+			<FiUser />
+		</div>
+	);
+};
 
 export default TopBar;
