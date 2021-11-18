@@ -1,0 +1,32 @@
+@import '../../../constants/_vars.scss';
+
+.inputTextBox {
+    display: flex;
+    margin-top: $base-padding/2;
+
+    .l-temp {
+        font-size: $standard-font-size;
+        background-color: #333333;
+        padding:8px;
+        color:  white;
+        outline: none;
+        flex-grow: 1;
+        border: 0;
+    }
+    
+    .l-title {
+        font-size: $standard-font-size;
+        background-color: #212121;
+        padding-block: $base-padding - 4;
+        padding-inline: $base-padding;
+        width: 15%;
+        text-align: left;
+        height: 100%;
+        margin: 0;
+    }
+
+}
+
+.error {
+    border: 1px solid red;
+}

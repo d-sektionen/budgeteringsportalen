@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useState } from 'react';
 import { FiX, FiMenu, FiGithub } from 'react-icons/fi';
 
 import logo from '../../images/round.svg';

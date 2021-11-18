@@ -1,6 +1,6 @@
 //import { Link } from "react-router-dom";
 
-import "./button.css";
+import "./button.scss";
 
 function Button({ link, onClick, href, children, title }) {
   /*
@@ -17,11 +17,11 @@ function Button({ link, onClick, href, children, title }) {
   );
   */
   return href ? (
-    ( <div class="button">
-      <a class="button-text" href={href}> Logga in med LiU-ID </a>
+    ( <div className="button">
+      <a className="button-text" href={href}> Logga in med LiU-ID </a>
       </div>) 
-      ) : (<div class="button" onClick={() => onClick()}> 
-      <p class="button-text">{title}</p>
+      ) : (<div className="button" onClick={() => onClick()}> 
+      <p className="button-text">{title}</p>
       </div>)
 }
 export default Button;

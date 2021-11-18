@@ -1,12 +1,16 @@
-import './lefttextbox.css';
+import { Field } from 'formik';
 
-function LeftTextBox({ title, temp }) {
-    return <>
-        <div class="inputTextBox">
-            <p class="l-title">{title}</p>
-            <input type="text" class="l-temp" placeholder={temp}/>
+import './lefttextbox.scss';
+
+const LeftTextBox = ({ title, temp, name, id, error }) => {
+    return (
+        <div className={`inputTextBox ${error ? 'error' : ''}`}>
+            <p className="l-title">{title}</p>
+            {console.log(error)}
+            {name && <Field id={id} name={name} type="text" className="l-temp" placeholder={temp}/>}
+            {!name && <Field type="text" className="l-temp" value={temp} readOnly={true} />}
         </div>
-    </>
+    )
 }
 
 export default LeftTextBox;

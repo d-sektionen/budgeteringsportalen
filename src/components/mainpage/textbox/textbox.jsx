@@ -1,10 +1,10 @@
-import './textbox.css';
+import './textbox.scss';
 
 function TextBox({ title, temp }) {
     return <>
-        <div class="inputTextBox">
-            <p class="title">{title}</p>
-            <input type="text" class="temp" placeholder={temp}/>
+        <div className="inputTextBox">
+            <p className="t-title">{title}</p>
+            <input type="text" className="t-temp" placeholder={temp}/>
         </div>
     </>
 }
