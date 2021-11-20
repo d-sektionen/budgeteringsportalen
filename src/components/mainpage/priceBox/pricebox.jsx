@@ -43,50 +43,52 @@ const PriceBox = ({ i }) => {
 					type='text'
 				/>
 			</div>
-			<div
-				id='price'
-				className={`${
-					touched.priceBoxes &&
-					touched?.priceBoxes[i]?.price &&
-					!currentBox.price
-						? 'error'
-						: ''
-				}`}
-			>
-				<p>Pris</p>
-				<Field
-					className='inputField'
-					title={'pris'}
-					name={`priceBoxes.${i}.price`}
-					type='number'
-				/>
-			</div>
-			<div
-				id='amount'
-				className={`${
-					touched.priceBoxes &&
-					touched?.priceBoxes[i]?.amount &&
-					!currentBox.amount
-						? 'error'
-						: ''
-				}`}
-			>
-				<p>Antal</p>
-				<Field
-					className='inputField'
-					title={'antal'}
-					name={`priceBoxes.${i}.amount`}
-					type='number'
-				/>
-			</div>
-			<div id='sum'>
-				<p>Summa</p>
-				<Field
-					className='inputField'
-					title={'summa'}
-					readOnly
-					name={`priceBoxes.${i}.total`}
-				/>
+			<div className='container'>
+				<div
+					id='price'
+					className={`${
+						touched.priceBoxes &&
+						touched?.priceBoxes[i]?.price &&
+						!currentBox.price
+							? 'error'
+							: ''
+					}`}
+				>
+					<p>Pris</p>
+					<Field
+						className='inputField'
+						title={'pris'}
+						name={`priceBoxes.${i}.price`}
+						type='number'
+					/>
+				</div>
+				<div
+					id='amount'
+					className={`${
+						touched.priceBoxes &&
+						touched?.priceBoxes[i]?.amount &&
+						!currentBox.amount
+							? 'error'
+							: ''
+					}`}
+				>
+					<p>Antal</p>
+					<Field
+						className='inputField'
+						title={'antal'}
+						name={`priceBoxes.${i}.amount`}
+						type='number'
+					/>
+				</div>
+				<div id='sum'>
+					<p>Summa</p>
+					<Field
+						className='inputField'
+						title={'summa'}
+						readOnly
+						name={`priceBoxes.${i}.total`}
+					/>
+				</div>
 			</div>
 		</div>
 	);

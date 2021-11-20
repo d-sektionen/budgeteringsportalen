@@ -37,7 +37,6 @@
 
 .textboxRow {
 	margin-top: $base-padding * 3;
-	outline: 4px solid black;
 	width: 100%;
 }
 
@@ -52,30 +51,8 @@
 	text-align: left;
 }
 
-/* #spec {
-	width: 37%;
-	float: left;
-	outline: 1px solid black;
-}
-
-#amount {
-	width: 21%;
-	float: left;
-	outline: 1px solid black;
-}
-
-#price {
-	width: 21%;
-	float: left;
-	outline: 1px solid black;
-}
-
-#sum {
-	width: 21%;
-	float: left;
-	outline: 1px solid black;
-}
- */
-#total {
-	clear: both;
+@media screen and (max-width: $small-mobile-breakpoint) {
+	.container {
+		width: 100%;
+	}
 }
