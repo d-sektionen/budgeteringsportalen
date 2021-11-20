@@ -18,6 +18,8 @@ const PriceBox = ({ i }) => {
 				`priceBoxes.${i}.total`,
 				currentBox.price * currentBox.amount
 			);
+		} else {
+			setFieldValue(`priceBoxes.${i}.total`, 0);
 		}
 	}, [currentBox, i, setFieldValue]);
 

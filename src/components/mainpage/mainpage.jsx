@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import './mainpage.scss';
+import CalculatedField from './textbox/calculatedField.jsx';
 
 const requiredField = 'Du måste fylla i detta fält!';
 const UtlaggSchema = Yup.object().shape({
@@ -26,6 +27,7 @@ function MainPage() {
 	const [liuid, setLiuid] = useState();
 	const [name, setName] = useState();
 	const [date, setDate] = useState();
+	const [total, setTotal] = useState(0);
 
 	const textContentBank = [
 		{
@@ -93,6 +95,12 @@ function MainPage() {
 		setDate(d.toDateString());
 	}, [date]);
 
+	const calculateTotal = (array) => {
+		array.reduce((a, b) => a + b.price * b.amount);
+	};
+
+	useEffect(() => {}, []);
+
 	return (
 		<>
 			<div id='mainPage'>
@@ -107,9 +115,10 @@ function MainPage() {
 								accountNumber: '',
 								bankName: '',
 								priceBoxes: [
-									{ spec: '', price: undefined, amount: undefined },
-									{ spec: '', price: undefined, amount: undefined },
+									{ spec: '', price: 0, amount: 0 },
+									{ spec: '', price: 0, amount: 0 },
 								],
+								totalPrice: 0,
 							}}
 							validationSchema={UtlaggSchema}
 							onSubmit={async (values) => {
@@ -117,7 +126,7 @@ function MainPage() {
 								alert(JSON.stringify(values, null, 2));
 							}}
 						>
-							{({ errors, values, touched }) => (
+							{({ errors, values, touched, setFieldValue }) => (
 								<Form className='container' autoComplete='off'>
 									<div className='textboxRow'>
 										{/* <PriceBox /> */}
@@ -131,7 +140,15 @@ function MainPage() {
 											}
 										</FieldArray>
 										<div id='total'>
-											<LeftTextBox title={'Totalt'} temp={'0'}></LeftTextBox>
+											<CalculatedField
+												id='totalPrice'
+												title='Totalt'
+												name='totalPrice'
+												value={values.totalPrice}
+												values={values}
+												setFieldValue={setFieldValue}
+												readOnly
+											/>
 										</div>
 									</div>
 									{
