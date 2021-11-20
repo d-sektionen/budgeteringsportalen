@@ -1,20 +1,51 @@
-.inputField {
-    margin: 0px;
-    font-size: 18px;
-    text-align: left;
-    background-color: #333333;
-    padding:8px;
-    color:  white;
+@import '../../../constants/vars';
+/* .inputField {
+	margin: 0px;
+	font-size: 18px;
+	text-align: left;
+	background-color: #333333;
+	padding: 8px;
+	color: white;
 
-    width: calc(100% - 16px);
-    outline: none;
+	outline: none;
+	p {
+		margin: 0px;
+		font-size: 18px;
+		background-color: #212121;
+		text-align: center;
+		padding: 8px;
+	}
+} */
 
-    p {
-        margin: 0px;
-        font-size: 18px;
-        background-color: #212121;
-        text-align: center;
-        padding:8px;
-    }
+.priceBox {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	grid-gap: $base-padding / 6;
+	margin-top: $base-padding / 2;
+
+	#spec {
+		flex-grow: 1;
+		width: 100%;
+	}
+
+	> div * {
+		padding: 12px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	> div p {
+		background-color: $background-color-2;
+	}
+
+	> div input {
+		background-color: $background-color-3;
+		outline: none;
+		border: none;
+		color: $foreground-color-4;
+	}
 }
 
+.priceBox:nth-of-type(1) {
+	margin: 0;
+}
