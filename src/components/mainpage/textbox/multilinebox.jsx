@@ -1,13 +1,23 @@
-import './multilinebox.scss';
-import './textbox.scss'
+import { Field } from 'formik';
 
-function MultilineBox({ title, temp }) {
-    return <>
-        <div className="multilineBox">
-            <p className="title">{title}</p>
-            <textarea placeholder={temp} rows={3}/>
-        </div>
-    </>
+import './multilinebox.scss';
+import './textbox.scss';
+
+function MultilineBox({ title, placeholder, name, error }) {
+	console.log(error);
+	return (
+		<>
+			<div className={`multilineBox ${error ? 'error' : ''}`}>
+				<p className='title'>{title}</p>
+				<Field
+					name={name}
+					placeholder={placeholder}
+					rows={3}
+					component='textarea'
+				/>
+			</div>
+		</>
+	);
 }
 
 export default MultilineBox;

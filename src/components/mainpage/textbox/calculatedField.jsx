@@ -16,9 +16,9 @@ const CalculatedField = ({ values, error, title, setFieldValue }) => {
 			<p className='title'>{title}</p>
 			<input
 				id='totalPrice'
-				type='number'
 				name='totalPrice'
 				value={values.totalPrice}
+				readOnly
 			/>
 		</div>
 	);

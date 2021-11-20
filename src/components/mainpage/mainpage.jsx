@@ -12,13 +12,22 @@ import CalculatedField from './textbox/calculatedField.jsx';
 
 const requiredField = 'Du måste fylla i detta fält!';
 const UtlaggSchema = Yup.object().shape({
-	clearingNumber: Yup.number().min(4, 'För kort!').required(requiredField),
-	bankName: Yup.string().required(requiredField),
+	description: Yup.string().required(requiredField),
+	clearingNumber: Yup.string()
+		.matches(/^[0-9-]*$/)
+		.min(4, 'För kort!')
+		.required(requiredField),
+	accountNumber: Yup.string()
+		.matches(/^[0-9- ]*$/)
+		.required(requiredField),
+	bankName: Yup.string()
+		.matches(/^[aA-öÖ\s]+$/)
+		.required(requiredField),
 	priceBoxes: Yup.array().of(
 		Yup.object().shape({
-			spec: Yup.string().required('Du måste ange en speficikation'),
-			price: Yup.number().required('Du måste ange ett pris'),
-			amount: Yup.number().required('Du måste ange antal'),
+			spec: Yup.string().required(requiredField),
+			price: Yup.number().required(requiredField),
+			amount: Yup.number().required(requiredField),
 		})
 	),
 });
@@ -27,7 +36,7 @@ function MainPage() {
 	const [liuid, setLiuid] = useState();
 	const [name, setName] = useState();
 	const [date, setDate] = useState();
-	const [total, setTotal] = useState(0);
+	const [user, setUser] = useState(undefined);
 
 	const textContentBank = [
 		{
@@ -95,22 +104,18 @@ function MainPage() {
 		setDate(d.toDateString());
 	}, [date]);
 
-	const calculateTotal = (array) => {
-		array.reduce((a, b) => a + b.price * b.amount);
-	};
-
 	useEffect(() => {}, []);
-
 	return (
 		<>
 			<div id='mainPage'>
 				{!liuid && (
 					<Button href='https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000' />
 				)}
-				{liuid && (
+				{liuid && name && (
 					<>
 						<Formik
 							initialValues={{
+								description: undefined,
 								clearingNumber: '',
 								accountNumber: '',
 								bankName: '',
@@ -119,6 +124,10 @@ function MainPage() {
 									{ spec: '', price: 0, amount: 0 },
 								],
 								totalPrice: 0,
+								liuId: liuid,
+								name: name,
+								city: 'Linköping',
+								signDate: date,
 							}}
 							validationSchema={UtlaggSchema}
 							onSubmit={async (values) => {
@@ -128,8 +137,9 @@ function MainPage() {
 						>
 							{({ errors, values, touched, setFieldValue }) => (
 								<Form className='container' autoComplete='off'>
+									{console.log(user)}
 									<div className='textboxRow'>
-										{/* <PriceBox /> */}
+										{console.log(name)}
 										<FieldArray name='priceBoxes'>
 											{() =>
 												values.priceBoxes.map((box, i) => {
@@ -155,7 +165,12 @@ function MainPage() {
 										//                  <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>
 									}{' '}
 									<div className='textboxRow'>
-										<MultilineBox title='Beskrivning av inköpet' />
+										<MultilineBox
+											title='Beskrivning av inköpet'
+											placeholder='Jag köpte dessa saker för att...'
+											name='description'
+											error={touched?.description && errors?.description}
+										/>
 									</div>
 									<div className='textboxRow'>
 										<Title titleText={'Kontouppgifter för överföring'} />
@@ -165,7 +180,7 @@ function MainPage() {
 												temp={box.temp}
 												name={box.name}
 												id={box.name}
-												error={errors[box.name]}
+												error={touched[box.name] && errors[box.name]}
 												key={i}
 											/>
 										))}
@@ -179,6 +194,7 @@ function MainPage() {
 												name={box.name}
 												id={box.name}
 												key={i}
+												touched={touched[box.name]}
 											/>
 										))}
 									</div>

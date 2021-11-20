@@ -8,16 +8,14 @@
 		resize: none;
 		background-color: $background-color-3;
 		border: 0px;
+		color: white;
+		font-size: $standard-font-size;
+		font-family: $dsek-font-order;
+
+		padding: $base-padding;
 
 		&:focus {
 			outline: none;
 		}
-	}
-
-	.title {
-		font-size: $standard-font-size;
-		background-color: $background-color-1;
-		text-align: center;
-		padding: $base-padding;
 	}
 }
