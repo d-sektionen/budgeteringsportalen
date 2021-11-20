@@ -21,20 +21,36 @@ const PriceBox = ({ i }) => {
 		}
 	}, [currentBox, i, setFieldValue]);
 
-	console.log(touched);
 	return (
 		<div className='priceBox'>
-			<div id='spec' className=''>
+			<div
+				id='spec'
+				className={`${
+					touched.priceBoxes &&
+					touched?.priceBoxes[i]?.spec &&
+					currentBox.spec === ''
+						? 'error'
+						: ''
+				}`}
+			>
 				<p>Specifikation</p>
 				<Field
 					className='inputField'
 					title={'Specifikation'}
-					name={`priceBoxes.${i}.name`}
+					name={`priceBoxes.${i}.spec`}
 					type='text'
 				/>
-				<ErrorMessage name={`priceBoxes.${i}.name`} component='div' />
 			</div>
-			<div id='price' className='box'>
+			<div
+				id='price'
+				className={`${
+					touched.priceBoxes &&
+					touched?.priceBoxes[i]?.price &&
+					!currentBox.price
+						? 'error'
+						: ''
+				}`}
+			>
 				<p>Pris</p>
 				<Field
 					className='inputField'
@@ -42,9 +58,17 @@ const PriceBox = ({ i }) => {
 					name={`priceBoxes.${i}.price`}
 					type='number'
 				/>
-				<ErrorMessage name={`priceBoxes.${i}.price`} component='div' />
 			</div>
-			<div id='amount'>
+			<div
+				id='amount'
+				className={`${
+					touched.priceBoxes &&
+					touched?.priceBoxes[i]?.amount &&
+					!currentBox.amount
+						? 'error'
+						: ''
+				}`}
+			>
 				<p>Antal</p>
 				<Field
 					className='inputField'

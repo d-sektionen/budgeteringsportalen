@@ -1,21 +1,4 @@
 @import '../../../constants/vars';
-/* .inputField {
-	margin: 0px;
-	font-size: 18px;
-	text-align: left;
-	background-color: #333333;
-	padding: 8px;
-	color: white;
-
-	outline: none;
-	p {
-		margin: 0px;
-		font-size: 18px;
-		background-color: #212121;
-		text-align: center;
-		padding: 8px;
-	}
-} */
 
 .priceBox {
 	display: grid;
@@ -34,15 +17,32 @@
 		box-sizing: border-box;
 	}
 
-	> div p {
+	p {
 		background-color: $background-color-2;
 	}
 
-	> div input {
+	input {
 		background-color: $background-color-3;
 		outline: none;
 		border: none;
 		color: $foreground-color-4;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
+	}
+
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.errorMessage {
+		font-size: $standard-font-size / 1.5;
+		background-color: $background-color-3;
+		padding: $base-padding / 2;
+		color: red;
 	}
 }
 
