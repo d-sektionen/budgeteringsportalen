@@ -18,16 +18,18 @@ const utskott = [
 	'Werkmästeriet',
 ];
 
-const SelectBox = () => {
+const SelectBox = ({ name, value, handleChange, error }) => {
 	return (
-		<div className='margin-0 inputTextBox'>
+		<div className={`margin-0 inputTextBox ${error ? 'error' : ''}`}>
 			<p className='title'>Utskott</p>
-			<select id='selectDropdown'>
-				<option value='-1' disabled selected>
+			<select name={name} value={value} onChange={handleChange}>
+				<option value='' disabled selected>
 					Välj utskott
 				</option>
 				{utskott.map((skott, i) => (
-					<option value={i}>{skott}</option>
+					<option value={i} key={i}>
+						{skott}
+					</option>
 				))}
 			</select>
 		</div>

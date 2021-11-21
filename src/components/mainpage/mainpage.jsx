@@ -31,23 +31,8 @@ const UtlaggSchema = Yup.object().shape({
 			amount: Yup.number().required(requiredField),
 		})
 	),
+	utskott: Yup.string().required(requiredField),
 });
-
-const utskott = [
-	'Alumni',
-	'D-Group',
-	'Donna',
-	'EventU',
-	'InfU',
-	'LINK',
-	'MafU',
-	'NärU',
-	'PubU',
-	'STABEN',
-	'Valberedningen',
-	'WebbU',
-	'Werkmästeriet',
-];
 
 function MainPage() {
 	const [liuid, setLiuid] = useState();
@@ -131,7 +116,7 @@ function MainPage() {
 					<>
 						<Formik
 							initialValues={{
-								description: undefined,
+								description: '',
 								clearingNumber: '',
 								accountNumber: '',
 								bankName: '',
@@ -144,6 +129,7 @@ function MainPage() {
 								name: name,
 								city: 'Linköping',
 								signDate: date,
+								utskott: '',
 							}}
 							validationSchema={UtlaggSchema}
 							onSubmit={async (values) => {
@@ -151,7 +137,7 @@ function MainPage() {
 								alert(JSON.stringify(values, null, 2));
 							}}
 						>
-							{({ errors, values, touched, setFieldValue }) => (
+							{({ errors, values, touched, setFieldValue, handleChange }) => (
 								<Form className='container' autoComplete='off'>
 									<div className='textboxRow'>
 										<FieldArray name='priceBoxes'>
@@ -181,8 +167,14 @@ function MainPage() {
 											setFieldValue={setFieldValue}
 											readOnly
 										/>
-										<SelectBox />
+										<SelectBox
+											name='utskott'
+											value={values.utskott}
+											handleChange={handleChange}
+											error={touched.utskott && errors.utskott}
+										/>
 									</div>
+									{console.log(errors)}
 									<div className='textboxRow'>
 										<Title titleText={'Kontouppgifter för överföring'} />
 										{textContentBank.map((box, i) => (

@@ -4,7 +4,6 @@ import './multilinebox.scss';
 import './textbox.scss';
 
 function MultilineBox({ title, placeholder, name, error }) {
-	console.log(error);
 	return (
 		<>
 			<div className={`multilineBox span-2 ${error ? 'error' : ''}`}>
