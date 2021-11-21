@@ -23,7 +23,7 @@ const SelectBox = ({ name, value, handleChange, error }) => {
 		<div className={`margin-0 inputTextBox ${error ? 'error' : ''}`}>
 			<p className='title'>Utskott</p>
 			<select name={name} value={value} onChange={handleChange}>
-				<option value='' disabled selected>
+				<option value='' disabled defaultValue>
 					Välj utskott
 				</option>
 				{utskott.map((skott, i) => (

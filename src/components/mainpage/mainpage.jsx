@@ -174,7 +174,6 @@ function MainPage() {
 											error={touched.utskott && errors.utskott}
 										/>
 									</div>
-									{console.log(errors)}
 									<div className='textboxRow'>
 										<Title titleText={'Kontouppgifter för överföring'} />
 										{textContentBank.map((box, i) => (

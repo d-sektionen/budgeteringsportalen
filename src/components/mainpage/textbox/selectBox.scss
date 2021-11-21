@@ -1,10 +1,7 @@
 @import '../../../constants/vars';
 
 @import './lefttextbox.scss';
-
-.margin-0 {
-	margin: 0;
-}
+@import './generalTextboxStyles.scss';
 
 select {
 	color: white;
