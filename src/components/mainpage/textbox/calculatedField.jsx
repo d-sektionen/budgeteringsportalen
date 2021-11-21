@@ -12,7 +12,7 @@ const CalculatedField = ({ values, error, title, setFieldValue }) => {
 	}, [values]);
 
 	return (
-		<div className={`inputTextBox ${error ? 'error' : ''}`}>
+		<div className={`inputTextBox margin-0 ${error ? 'error' : ''}`}>
 			<p className='title'>{title}</p>
 			<input
 				id='totalPrice'

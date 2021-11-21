@@ -9,6 +9,7 @@ import { Formik, Form, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import './mainpage.scss';
 import CalculatedField from './textbox/calculatedField.jsx';
+import SelectBox from './textbox/selectBox.jsx';
 
 const requiredField = 'Du måste fylla i detta fält!';
 const UtlaggSchema = Yup.object().shape({
@@ -32,11 +33,26 @@ const UtlaggSchema = Yup.object().shape({
 	),
 });
 
+const utskott = [
+	'Alumni',
+	'D-Group',
+	'Donna',
+	'EventU',
+	'InfU',
+	'LINK',
+	'MafU',
+	'NärU',
+	'PubU',
+	'STABEN',
+	'Valberedningen',
+	'WebbU',
+	'Werkmästeriet',
+];
+
 function MainPage() {
 	const [liuid, setLiuid] = useState();
 	const [name, setName] = useState();
 	const [date, setDate] = useState();
-	const [user, setUser] = useState(undefined);
 
 	const textContentBank = [
 		{
@@ -137,40 +153,35 @@ function MainPage() {
 						>
 							{({ errors, values, touched, setFieldValue }) => (
 								<Form className='container' autoComplete='off'>
-									{console.log(user)}
 									<div className='textboxRow'>
-										{console.log(name)}
 										<FieldArray name='priceBoxes'>
 											{() =>
 												values.priceBoxes.map((box, i) => {
-													//const boxErrors = (errors.priceBoxes.length && errors.priceBoxes[i]) || {};
-													//const boxTouched = (touched.priceBoxes.length && touched.priceBoxes[i]) || {};
 													return <PriceBox i={i} key={i} />;
 												})
 											}
 										</FieldArray>
-										<div id='total'>
-											<CalculatedField
-												id='totalPrice'
-												title='Totalt'
-												name='totalPrice'
-												value={values.totalPrice}
-												values={values}
-												setFieldValue={setFieldValue}
-												readOnly
-											/>
-										</div>
 									</div>
 									{
 										//                  <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>
-									}{' '}
-									<div className='textboxRow'>
+									}
+									<div className='textboxRow grid-2-1'>
 										<MultilineBox
-											title='Beskrivning av inköpet'
+											title='Ändamål med inköpet'
 											placeholder='Jag köpte dessa saker för att...'
 											name='description'
 											error={touched?.description && errors?.description}
 										/>
+										<CalculatedField
+											id='totalPrice'
+											title='Totalt'
+											name='totalPrice'
+											value={values.totalPrice}
+											values={values}
+											setFieldValue={setFieldValue}
+											readOnly
+										/>
+										<SelectBox />
 									</div>
 									<div className='textboxRow'>
 										<Title titleText={'Kontouppgifter för överföring'} />
@@ -198,22 +209,6 @@ function MainPage() {
 											/>
 										))}
 									</div>
-									{/* <select value="1" id="selectDropdown">
-                    <option value="1">EventU</option>
-                    <option value="2">Alumni</option>
-                    <option value="3">D-Group</option>
-                    <option value="4">Donna</option>
-                    <option value="5">InfU</option>
-                    <option value="6">LINK</option>
-                    <option value="7">MafU</option>
-                    <option value="8">NärU</option>
-                    <option value="9">PubU</option>
-                    <option value="10">STABEN</option>
-                    <option value="11">UtbU</option>
-                    <option value="12">Valberedningen</option>
-                    <option value="13">WebbU</option>
-                    <option value="13">Werkmästeriet</option>
-                  </select> */}
 									<p className='warning'>
 										Genom att signera intygar jag att ovanstående är korrekt och
 										sanningsenligt samt att sektionen får lagra informationen i
