@@ -1,20 +1,72 @@
-.inputField {
-    margin: 0px;
-    font-size: 18px;
-    text-align: left;
-    background-color: #333333;
-    padding:8px;
-    color:  white;
+@import '../../../constants/vars';
 
-    width: calc(100% - 16px);
-    outline: none;
+.priceBox {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	flex-wrap: wrap;
+	margin-top: $base-padding / 2;
 
-    p {
-        margin: 0px;
-        font-size: 18px;
-        background-color: #212121;
-        text-align: center;
-        padding:8px;
-    }
+	#spec {
+		flex-grow: 1;
+		margin-right: $base-padding / 4;
+		grid-column: span 2;
+	}
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		width: auto;
+		grid-column: span 2;
+
+		& > div:nth-last-of-type(2) {
+			margin-inline: $base-padding / 4;
+		}
+	}
+
+	p,
+	input {
+		padding: $base-padding;
+		box-sizing: border-box;
+		width: 100%;
+	}
+
+	p {
+		background-color: $background-color-2;
+	}
+
+	input {
+		background-color: $background-color-3;
+		outline: none;
+		border: none;
+		color: $foreground-color-4;
+
+		&[type='number'] {
+			-moz-appearance: textfield;
+		}
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		#spec {
+			grid-column: span 4;
+			margin: 0;
+		}
+
+		.container {
+			grid-column: span 4;
+		}
+
+		input {
+			width: 100%;
+		}
+	}
 }
 
+.priceBox:nth-of-type(1) {
+	margin: 0;
+}

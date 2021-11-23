@@ -7,6 +7,12 @@ body {
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: 'Asap', Arial, sans-serif;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-weight: 400;
 }

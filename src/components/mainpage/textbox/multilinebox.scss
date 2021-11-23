@@ -1,12 +1,21 @@
-.multilineBox {
-    resize: none;
-    width: calc(100% - 16px);
-}
+@import '../../../constants/vars';
 
-.title {
-    margin: 0px;
-    font-size: 18px;
-    background-color: #212121;
-    text-align: center;
-    padding:8px;
+.multilineBox {
+	display: flex;
+	flex-direction: column;
+
+	textarea {
+		resize: none;
+		background-color: $background-color-3;
+		border: 0px;
+		color: white;
+		font-size: $standard-font-size;
+		font-family: $dsek-font-order;
+
+		padding: $base-padding;
+
+		&:focus {
+			outline: none;
+		}
+	}
 }
