@@ -183,6 +183,7 @@ function MainPage() {
 												name={box.name}
 												id={box.name}
 												error={touched[box.name] && errors[box.name]}
+												touched={touched[box.name]}
 												key={i}
 											/>
 										))}

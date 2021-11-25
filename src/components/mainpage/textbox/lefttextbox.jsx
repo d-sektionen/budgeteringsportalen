@@ -12,7 +12,7 @@ const LeftTextBox = ({ title, temp, name, id, error, touched }) => {
 					name={name}
 					type='text'
 					placeholder={temp}
-					className={`${!touched ? 'untouched' : ''}`}
+					className={`${!touched ? 'untouched' : 'touched'}`}
 				/>
 			)}
 			{!name && <Field type='text' value={temp} readOnly={true} />}

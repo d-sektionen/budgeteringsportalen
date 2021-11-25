@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { FiX, FiMenu, FiGithub } from 'react-icons/fi';
-
+import { Link } from 'react-router-dom';
 import logo from '../../images/round.svg';
 
 import './menu.scss';
 
-const entries = [
-	'Översikt',
-	'Personligt utlägg',
-	'Översikt',
-	'Personligt utlägg',
-	'Översikt',
-	'Personligt utlägg',
+const entries = [	
+	{
+		title: 'Mina sidor',
+		link: '/overview'
+	},
+	{
+		title: 'Personligt utlägg',
+		link: '/'
+	},
 ];
 
 const Menu = () => {
@@ -34,9 +36,9 @@ const Menu = () => {
 					<ul>
 						{entries.map((entry) => (
 							<li>
-								<a href='/' className='menuItem'>
-									{entry}
-								</a>
+								<Link to={entry.link} className='menuItem'>
+									{entry.title}
+								</Link>
 							</li>
 						))}
 					</ul>

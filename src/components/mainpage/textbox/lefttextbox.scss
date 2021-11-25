@@ -27,6 +27,10 @@
 	.untouched {
 		color: $placeholder-color;
 	}
+
+	.touched {
+		color: white;
+	}
 }
 
 .error {
