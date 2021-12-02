@@ -1,27 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 
 const CalculatedField = ({ values, error, title, setFieldValue }) => {
-	useEffect(() => {
-		var val = 0;
-		if (values.priceBoxes) {
-			val = values.priceBoxes.reduce(
-				(a, b) => a.amount * a.price + b.amount * b.price
-			);
-		}
-		setFieldValue('totalPrice', val);
-	}, [values, setFieldValue]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-	return (
-		<div className={`inputTextBox margin-0 ${error ? 'error' : ''}`}>
-			<p className='title'>{title}</p>
-			<input
-				id='totalPrice'
-				name='totalPrice'
-				value={values.totalPrice}
-				readOnly
-			/>
-		</div>
-	);
+
+  useEffect(() => {
+    var val = 0;
+    if (values) {
+			values.forEach(({price, amount}) => {
+				val = val + price * amount
+			})
+    } 
+    setTotalPrice(val);
+  }, [values, setFieldValue]);
+
+  return (
+    <div className={`inputTextBox margin-0 ${error ? "error" : ""}`}>
+      <p className="title">{title}</p>
+      <input
+        id="totalPrice"
+        name="totalPrice"
+        value={!isNaN(totalPrice) ? totalPrice : 0}
+        readOnly
+      />
+    </div>
+  );
 };
 
 export default CalculatedField;

@@ -3,6 +3,7 @@ import OvListElement from './ovlistelement.jsx';
 
 import './overview.scss';
 import '../mainpage/mainpage.scss';
+import LeftTextBox from '../mainpage/textbox/lefttextbox.jsx';
 
 function OverView() {
 	const entries = [];

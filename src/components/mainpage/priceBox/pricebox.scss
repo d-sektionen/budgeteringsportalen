@@ -2,21 +2,22 @@
 
 .priceBox {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	flex-wrap: wrap;
 	margin-top: $base-padding / 2;
 
 	#spec {
 		flex-grow: 1;
 		margin-right: $base-padding / 4;
-		grid-column: span 2;
+		grid-column: span 3;
 	}
-
+								
 	.container {
-		display: flex;
-		flex-direction: row;
-		width: auto;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		width: 100%;
 		grid-column: span 2;
+		justify-content: start;
 
 		& > div:nth-last-of-type(2) {
 			margin-inline: $base-padding / 4;
@@ -28,6 +29,10 @@
 		padding: $base-padding;
 		box-sizing: border-box;
 		width: 100%;
+	}
+
+	#price, #amount, #sum {
+		flex-grow: 1;
 	}
 
 	p {
@@ -52,6 +57,10 @@
 	}
 
 	@media screen and (max-width: 800px) {
+		.priceBox {
+			display: flex;
+		}
+
 		#spec {
 			grid-column: span 4;
 			margin: 0;
@@ -64,6 +73,12 @@
 		input {
 			width: 100%;
 		}
+	}
+}
+
+@media screen and (max-width: 970px) {
+	.priceBox {
+		display: flex;
 	}
 }
 
