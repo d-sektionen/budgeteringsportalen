@@ -33,6 +33,12 @@
 	}
 }
 
+.displayBox {
+	background-color: #333333;
+	flex-grow: 10;
+	padding: $base-padding;
+}
+
 .error {
 	border: 1px solid red;
 }

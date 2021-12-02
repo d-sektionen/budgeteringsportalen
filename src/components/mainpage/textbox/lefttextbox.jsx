@@ -2,11 +2,11 @@ import { Field } from 'formik';
 
 import './lefttextbox.scss';
 
-const LeftTextBox = ({ title, temp, name, id, error, touched }) => {
+const LeftTextBox = ({ title, temp, name, id, error, touched, isFormik = true }) => {
 	return (
 		<div className={`inputTextBox ${error ? 'error' : ''}`}>
 			<p className='title'>{title}</p>
-			{name && (
+			{name && isFormik && (
 				<Field
 					id={id}
 					name={name}
@@ -15,8 +15,9 @@ const LeftTextBox = ({ title, temp, name, id, error, touched }) => {
 					className={`${!touched ? 'untouched' : 'touched'}`}
 				/>
 			)}
-			{!name && <Field type='text' value={temp} readOnly={true} />}
-		</div>
+			{!name && isFormik && <Field type='text' value={temp} readOnly={true} />}
+			{!isFormik && <p className='displayBox'> {temp}</p>}
+		</div >
 	);
 };
 
