@@ -3,7 +3,8 @@ import OvListElement from './ovlistelement.jsx';
 
 import './overview.scss';
 import '../mainpage/mainpage.scss';
-import OvUtlagg from './ovutlagg.jsx';
+import PdfComponent from './pdf.component.jsx';
+import DescriptionBox from './descriptionbox.jsx';
 
 function OverView() {
     const entries = [];
@@ -48,12 +49,10 @@ function OverView() {
             <div id='overView' className='container'>
                 <h1>Översikt</h1>
 
+                <PdfComponent/>
 
                 <div id='overViewList'>
                     {entries.map((e, i) => (<OvListElement doc={e} key={i} />))}
-                </div>
-                <div>
-                    <OvUtlagg content={tempUser} />
                 </div>
             </div>
         </>
