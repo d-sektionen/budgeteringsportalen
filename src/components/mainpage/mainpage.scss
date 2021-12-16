@@ -8,6 +8,15 @@
 	color: white;
 	background-color: #111111;
 	margin-top: 32px;
+
+	label {
+		display: flex;
+		padding: $base-padding;	
+	}
+
+	input[type="checkbox" i] {
+		transform: scale(2);
+	}
 }
 
 .container {
@@ -33,10 +42,9 @@
 }
 
 .warning {
-	margin-top: 16px;
+	padding-inline-start: $base-padding;
+	padding-bottom: $base-padding;
 	color: red;
-	background-color: #111111;
-	text-align: left;
 }
 
 .grid-2-1 > div {

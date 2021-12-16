@@ -1,0 +1,24 @@
+@import '../../constants/_vars.scss';
+
+.t-row {
+    display: flex;
+    font-size: $standard-font-size;
+    text-align: left;
+    color: black;
+    
+    
+    .trow-title {
+        padding: $base-padding;
+        min-width: 25%;
+        flex-grow: 1;
+        background-color: white;
+        border: 1px solid black;
+    }
+    .t-val {
+        padding:$base-padding;
+        flex-grow: 10;
+        background-color: white;
+        border: 1px solid black;
+    
+    }
+}

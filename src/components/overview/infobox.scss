@@ -1,0 +1,13 @@
+@import '../../constants/_vars.scss';
+
+.t-info-title {
+    padding: $base-padding;
+    min-width: 15%;
+    flex-grow: 1;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    margin-top: $base-padding/2;
+    font-weight: bold;
+}

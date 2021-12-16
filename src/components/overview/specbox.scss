@@ -1,0 +1,39 @@
+@import '../../constants/_vars.scss';
+
+.spec-row{
+    display: flex;
+    font-size: $standard-font-size;
+    text-align: left;
+    color: black;
+    flex-direction: column;
+
+    .spec-titles{
+        display: flex;
+        min-width: 40%;
+        flex-grow: 1;
+        background-color: white;
+        flex-direction: row;
+        .spec-title{
+            border: 1px solid black;
+            flex-grow: 1;
+
+        }
+
+
+    }
+    .spec-vals{
+        display: flex;
+        flex-grow: 10;
+        background-color: white;
+        flex-wrap: wrap;
+        
+
+        .spec-val {
+            border: 1px solid black;
+            flex-grow: 1;
+        }
+
+
+    }
+
+}
