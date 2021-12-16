@@ -1,15 +1,11 @@
 import Button from '../mainpage/button/button.jsx';
 import OvListElement from './ovlistelement.jsx';
 
+
 import './overview.scss';
 import '../mainpage/mainpage.scss';
-<<<<<<< add-more-spec
-import LeftTextBox from '../mainpage/textbox/lefttextbox.jsx';
-import OvUtlagg from './ovutlagg.jsx';
-=======
-import PdfComponent from './pdf.component.jsx';
-import DescriptionBox from './descriptionbox.jsx';
->>>>>>> main
+
+
 
 function OverView() {
     const entries = [];
@@ -54,7 +50,7 @@ function OverView() {
             <div id='overView' className='container'>
                 <h1>Översikt</h1>
 
-                <PdfComponent/>
+                {{/* <PdfComponent/> */}}
 
                 <div id='overViewList'>
                     {entries.map((e, i) => (<OvListElement doc={e} key={i} />))}
