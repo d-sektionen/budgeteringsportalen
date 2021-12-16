@@ -1,33 +1,24 @@
+@import "../../../constants/_vars.scss";
+
 .button {
-	-webkit-box-sizing:border-box;
-	   -moz-box-sizing:border-box;
-	        box-sizing:border-box;
+  margin-top: $base-padding;
+	padding: $base-padding;
 
-	margin-top: 32px;
-	margin-bottom: 32px;
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 18px;
-	text-decoration: none;
-	text-align: center;
-	color: #FFF;
-	background: #212121;
-    outline: 4px solid black;
-	cursor: pointer;
-	width: 100%;
+  text-decoration: none;
+  text-align: center;
+  background: #212121;
+  cursor: pointer;
 
-	box-shadow:
-		inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
-		1px 1px 3px rgba(0,0,0,0.75); /* shadow */
-	-webkit-transition: 500ms linear;
-	   -moz-transition: 500ms linear;
-	     -o-transition: 500ms linear;
-					transition: 500ms linear;
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25),
+    /* highlight */ 1px 1px 3px rgba(0, 0, 0, 0.75); /* shadow */
+  -webkit-transition: 500ms linear;
+  -moz-transition: 500ms linear;
+  -o-transition: 500ms linear;
+  transition: 500ms linear;
 }
 
 .button:hover {
-	background: #333333;
-	box-shadow:
-		inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
-		1px 1px 3px rgba(0,0,0,0.75); /* shadow */
+  background: #333333;
+  box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.25),
+    /* highlight */ 1px 1px 3px rgba(0, 0, 0, 0.75); /* shadow */
 }

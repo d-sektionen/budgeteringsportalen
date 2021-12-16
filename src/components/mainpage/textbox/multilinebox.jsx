@@ -11,7 +11,7 @@ function MultilineBox({ title, placeholder, name, error, isFormik = true }) {
 				{isFormik && (<Field
 					name={name}
 					placeholder={placeholder}
-					rows={7}
+					rows={4}
 					component='textarea'
 				/>)
 				}

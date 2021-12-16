@@ -1,3 +1,17 @@
+<<<<<<< add-more-spec
+import Title from "./textbox/title.jsx";
+import LeftTextBox from "./textbox/lefttextbox.jsx";
+import MultilineBox from "./textbox/multilinebox.jsx";
+import Button from "./button/button.jsx";
+import PriceBox from "./priceBox/pricebox.jsx";
+import retrieveLiuid from "../utility/user.js";
+import { useEffect, useState } from "react";
+import { Formik, Form, FieldArray } from "formik";
+import * as Yup from "yup";
+import "./mainpage.scss";
+import CalculatedField from "./textbox/calculatedField.jsx";
+import SelectBox from "./textbox/selectBox.jsx";
+=======
 import Title from './textbox/title.jsx';
 import LeftTextBox from './textbox/lefttextbox.jsx';
 import MultilineBox from './textbox/multilinebox.jsx';
@@ -10,9 +24,31 @@ import * as Yup from 'yup';
 import './mainpage.scss';
 import CalculatedField from './textbox/calculatedField.jsx';
 import SelectBox from './textbox/selectBox.jsx';
+>>>>>>> main
 
-const requiredField = 'Du måste fylla i detta fält!';
+const requiredField = "Du måste fylla i detta fält!";
 const UtlaggSchema = Yup.object().shape({
+<<<<<<< add-more-spec
+  description: Yup.string().required(requiredField),
+  clearingNumber: Yup.string()
+    .matches(/^[0-9-]*$/)
+    .min(4, "För kort!")
+    .required(requiredField),
+  accountNumber: Yup.string()
+    .matches(/^[0-9- ]*$/)
+    .required(requiredField),
+  bankName: Yup.string()
+    .matches(/^[aA-öÖ\s]+$/)
+    .required(requiredField),
+  priceBoxes: Yup.array().of(
+    Yup.object().shape({
+      spec: Yup.string().required(requiredField),
+      price: Yup.number().required(requiredField),
+      amount: Yup.number().required(requiredField),
+    })
+  ),
+  utskott: Yup.string().required(requiredField),
+=======
 	description: Yup.string().required(requiredField),
 	clearingNumber: Yup.string()
 		.matches(/^[0-9-]*$/)
@@ -33,81 +69,92 @@ const UtlaggSchema = Yup.object().shape({
 	),
 	utskott: Yup.string().required(requiredField),
 	sign: Yup.bool().oneOf([true], 'Field must be checked')
+>>>>>>> main
 });
 
 function MainPage() {
-	const [liuid, setLiuid] = useState();
-	const [name, setName] = useState();
-	const [date, setDate] = useState();
+  const [liuid, setLiuid] = useState();
+  const [name, setName] = useState();
+  const [date, setDate] = useState();
 
-	const textContentBank = [
-		{
-			title: 'Clearing-nr',
-			temp: '8123-4',
-			name: 'clearingNumber',
-		},
-		{
-			title: 'Konto-nr',
-			temp: '123 456 789-0',
-			name: 'accountNumber',
-		},
-		{
-			title: 'Bank',
-			temp: 'D-Bank',
-			name: 'bankName',
-		},
-	];
+  const textContentBank = [
+    {
+      title: "Clearing-nr",
+      temp: "8123-4",
+      name: "clearingNumber",
+    },
+    {
+      title: "Konto-nr",
+      temp: "123 456 789-0",
+      name: "accountNumber",
+    },
+    {
+      title: "Bank",
+      temp: "D-Bank",
+      name: "bankName",
+    },
+  ];
 
-	const textContentUser = [
-		{
-			title: 'LiU-id',
-			temp: liuid,
-		},
-		{
-			title: 'Namn',
-			temp: name,
-			name: 'name',
-		},
-		{
-			title: 'Ort',
-			temp: 'Linköping',
-			name: 'city',
-		},
-		{
-			title: 'Datum',
-			temp: date,
-		},
-	];
+  const textContentUser = [
+    {
+      title: "LiU-id",
+      temp: liuid,
+    },
+    {
+      title: "Namn",
+      temp: name,
+      name: "name",
+    },
+    {
+      title: "Ort",
+      temp: "Linköping",
+      name: "city",
+    },
+    {
+      title: "Datum",
+      temp: date,
+    },
+  ];
 
-	useEffect(() => {
-		const urlParams = new URLSearchParams(window.location.search);
-		const access = urlParams.get('access');
-		//let user = {}
-		if (access != null) {
-			window.localStorage.setItem('token', access);
-			window.history.replaceState({}, document.title, '/');
-			retrieveLiuid().then((user) => {
-				setLiuid(user.liuid);
-				setName(user.name);
-			});
-		} else if (
-			window.localStorage.getItem('token') !== 'null' ||
-			window.localStorage.getItem('token') != null
-		) {
-			retrieveLiuid().then((user) => {
-				setLiuid(user.liuid);
-				setName(user.name);
-			});
-		}
-	}, [liuid, name]);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const access = urlParams.get("access");
+    //let user = {}
+    if (access != null) {
+      window.localStorage.setItem("token", access);
+      window.history.replaceState({}, document.title, "/");
+      retrieveLiuid().then((user) => {
+        setLiuid(user.liuid);
+        setName(user.name);
+      });
+    } else if (
+      window.localStorage.getItem("token") !== "null" ||
+      window.localStorage.getItem("token") != null
+    ) {
+      retrieveLiuid().then((user) => {
+        setLiuid(user.liuid);
+        setName(user.name);
+      });
+    }
+  }, [liuid, name]);
 
-	useEffect(() => {
-		const d = new Date();
-		setDate(d.toDateString());
-	}, [date]);
+  useEffect(() => {
+    const d = new Date();
+    setDate(d.toDateString());
+  }, [date]);
 
+<<<<<<< add-more-spec
+  const addPriceBox = (priceBoxes) => {
+    console.log("add box");
+    priceBoxes.push({ spec: "", price: 0, amount: 0 });
+  };
+
+  useEffect(() => {}, []);
+  return (
+=======
 	useEffect(() => {}, []);
 	return (
+>>>>>>> main
     <>
       <div id="mainPage">
         {!liuid && (
@@ -121,17 +168,24 @@ function MainPage() {
                 clearingNumber: "",
                 accountNumber: "",
                 bankName: "",
+<<<<<<< add-more-spec
+                priceBoxes: [{ spec: "", price: 0, amount: 0 }],
+=======
                 priceBoxes: [
                   { spec: "", price: 0, amount: 0 },
                   { spec: "", price: 0, amount: 0 },
                 ],
                 totalPrice: 0,
+>>>>>>> main
                 liuId: liuid,
                 name: name,
                 city: "Linköping",
                 signDate: date,
                 utskott: "",
+<<<<<<< add-more-spec
+=======
                 sign: false,
+>>>>>>> main
               }}
               validationSchema={UtlaggSchema}
               onSubmit={async (values) => {
@@ -142,6 +196,31 @@ function MainPage() {
               {({ errors, values, touched, setFieldValue, handleChange }) => (
                 <Form className="container" autoComplete="off">
                   <div className="textboxRow">
+<<<<<<< add-more-spec
+                    <FieldArray
+                      name="priceBoxes"
+                      render={(arrayHelpers) => (
+                        <>
+                          {values.priceBoxes.map((box, i) => (
+                            <PriceBox i={i} key={i} />
+                          ))}
+                          <Button
+                            type="button"
+                            onClick={() =>
+                              arrayHelpers.push({
+                                spec: "",
+                                price: 0,
+                                amount: 0,
+                              })
+                            }
+														title={'Lägg till rad'}
+                          />
+                        </>
+                      )}
+                    />
+                  </div>
+
+=======
                     <FieldArray name="priceBoxes">
                       {() =>
                         values.priceBoxes.map((box, i) => {
@@ -153,6 +232,7 @@ function MainPage() {
                   {
                     //                  <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>
                   }
+>>>>>>> main
                   <div className="textboxRow grid-2-1">
                     <MultilineBox
                       title="Ändamål med inköpet"
@@ -165,7 +245,11 @@ function MainPage() {
                       title="Totalt"
                       name="totalPrice"
                       value={values.totalPrice}
+<<<<<<< add-more-spec
+                      values={values.priceBoxes}
+=======
                       values={values}
+>>>>>>> main
                       setFieldValue={setFieldValue}
                       readOnly
                     />
@@ -203,6 +287,13 @@ function MainPage() {
                       />
                     ))}
                   </div>
+<<<<<<< add-more-spec
+                  <p className="warning">
+                    Genom att signera intygar jag att ovanstående är korrekt och
+                    sanningsenligt samt att sektionen får lagra informationen i
+                    detta formulär tillsvidare i bokföringssyfte.
+                  </p>
+=======
                   <div className="textboxRow">
 										<label className={`${errors.sign && touched.sign ? 'error' : ''}`}>
 											<Field type="checkbox" name="sign" />
@@ -214,6 +305,7 @@ function MainPage() {
 											</p>
 										</label>
                   </div>
+>>>>>>> main
                   <button type="submit">Submit</button>
                 </Form>
               )}
