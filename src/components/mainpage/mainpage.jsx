@@ -5,7 +5,7 @@ import Button from './button/button.jsx';
 import PriceBox from './priceBox/pricebox.jsx';
 import retrieveLiuid from '../utility/user.js';
 import { useEffect, useState } from 'react';
-import { Formik, Form, FieldArray } from 'formik';
+import { Formik, Form, FieldArray, Field } from 'formik';
 import * as Yup from 'yup';
 import './mainpage.scss';
 import CalculatedField from './textbox/calculatedField.jsx';
@@ -32,6 +32,7 @@ const UtlaggSchema = Yup.object().shape({
 		})
 	),
 	utskott: Yup.string().required(requiredField),
+	sign: Yup.bool().oneOf([true], 'Field must be checked')
 });
 
 function MainPage() {
@@ -107,114 +108,121 @@ function MainPage() {
 
 	useEffect(() => {}, []);
 	return (
-		<>
-			<div id='mainPage'>
-				{!liuid && (
-					<Button href='https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000' />
-				)}
-				{liuid && name && (
-					<>
-						<Formik
-							initialValues={{
-								description: '',
-								clearingNumber: '',
-								accountNumber: '',
-								bankName: '',
-								priceBoxes: [
-									{ spec: '', price: 0, amount: 0 },
-									{ spec: '', price: 0, amount: 0 },
-								],
-								totalPrice: 0,
-								liuId: liuid,
-								name: name,
-								city: 'Linköping',
-								signDate: date,
-								utskott: '',
-							}}
-							validationSchema={UtlaggSchema}
-							onSubmit={async (values) => {
-								await new Promise((r) => setTimeout(r, 500));
-								alert(JSON.stringify(values, null, 2));
-							}}
-						>
-							{({ errors, values, touched, setFieldValue, handleChange }) => (
-								<Form className='container' autoComplete='off'>
-									<div className='textboxRow'>
-										<FieldArray name='priceBoxes'>
-											{() =>
-												values.priceBoxes.map((box, i) => {
-													return <PriceBox i={i} key={i} />;
-												})
-											}
-										</FieldArray>
-									</div>
-									{
-										//                  <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>
-									}
-									<div className='textboxRow grid-2-1'>
-										<MultilineBox
-											title='Ändamål med inköpet'
-											placeholder='Jag köpte dessa saker för att...'
-											name='description'
-											error={touched?.description && errors?.description}
-										/>
-										<CalculatedField
-											id='totalPrice'
-											title='Totalt'
-											name='totalPrice'
-											value={values.totalPrice}
-											values={values}
-											setFieldValue={setFieldValue}
-											readOnly
-										/>
-										<SelectBox
-											name='utskott'
-											value={values.utskott}
-											handleChange={handleChange}
-											error={touched.utskott && errors.utskott}
-										/>
-									</div>
-									<div className='textboxRow'>
-										<Title titleText={'Kontouppgifter för överföring'} />
-										{textContentBank.map((box, i) => (
-											<LeftTextBox
-												title={box.title}
-												temp={box.temp}
-												name={box.name}
-												id={box.name}
-												error={touched[box.name] && errors[box.name]}
-												touched={touched[box.name]}
-												key={i}
-											/>
-										))}
-									</div>
-									<div className='textboxRow'>
-										<Title titleText={'Övriga uppgifter'}></Title>
-										{textContentUser.map((box, i) => (
-											<LeftTextBox
-												title={box.title}
-												temp={box.temp}
-												name={box.name}
-												id={box.name}
-												key={i}
-												touched={touched[box.name]}
-											/>
-										))}
-									</div>
-									<p className='warning'>
-										Genom att signera intygar jag att ovanstående är korrekt och
-										sanningsenligt samt att sektionen får lagra informationen i
-										detta formulär tillsvidare i bokföringssyfte.
-									</p>
-									<button type='submit'>Submit</button>
-								</Form>
-							)}
-						</Formik>
-					</>
-				)}
-			</div>
-		</>
-	);
+    <>
+      <div id="mainPage">
+        {!liuid && (
+          <Button href="https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000" />
+        )}
+        {liuid && name && (
+          <>
+            <Formik
+              initialValues={{
+                description: "",
+                clearingNumber: "",
+                accountNumber: "",
+                bankName: "",
+                priceBoxes: [
+                  { spec: "", price: 0, amount: 0 },
+                  { spec: "", price: 0, amount: 0 },
+                ],
+                totalPrice: 0,
+                liuId: liuid,
+                name: name,
+                city: "Linköping",
+                signDate: date,
+                utskott: "",
+                sign: false,
+              }}
+              validationSchema={UtlaggSchema}
+              onSubmit={async (values) => {
+                await new Promise((r) => setTimeout(r, 500));
+                alert(JSON.stringify(values, null, 2));
+              }}
+            >
+              {({ errors, values, touched, setFieldValue, handleChange }) => (
+                <Form className="container" autoComplete="off">
+                  <div className="textboxRow">
+                    <FieldArray name="priceBoxes">
+                      {() =>
+                        values.priceBoxes.map((box, i) => {
+                          return <PriceBox i={i} key={i} />;
+                        })
+                      }
+                    </FieldArray>
+                  </div>
+                  {
+                    //                  <Button onClick={() => setPriceBoxes(priceboxes => [...priceboxes, {price:0,amount:1}])} title="Lägg till utgift"></Button>
+                  }
+                  <div className="textboxRow grid-2-1">
+                    <MultilineBox
+                      title="Ändamål med inköpet"
+                      placeholder="Jag köpte dessa saker för att..."
+                      name="description"
+                      error={touched?.description && errors?.description}
+                    />
+                    <CalculatedField
+                      id="totalPrice"
+                      title="Totalt"
+                      name="totalPrice"
+                      value={values.totalPrice}
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      readOnly
+                    />
+                    <SelectBox
+                      name="utskott"
+                      value={values.utskott}
+                      handleChange={handleChange}
+                      error={touched.utskott && errors.utskott}
+                    />
+                  </div>
+                  <div className="textboxRow">
+                    <Title titleText={"Kontouppgifter för överföring"} />
+                    {textContentBank.map((box, i) => (
+                      <LeftTextBox
+                        title={box.title}
+                        temp={box.temp}
+                        name={box.name}
+                        id={box.name}
+                        error={touched[box.name] && errors[box.name]}
+                        touched={touched[box.name]}
+                        key={i}
+                      />
+                    ))}
+                  </div>
+                  <div className="textboxRow">
+                    <Title titleText={"Övriga uppgifter"}></Title>
+                    {textContentUser.map((box, i) => (
+                      <LeftTextBox
+                        title={box.title}
+                        temp={box.temp}
+                        name={box.name}
+                        id={box.name}
+                        key={i}
+                        touched={touched[box.name]}
+                      />
+                    ))}
+                  </div>
+                  <div className="textboxRow">
+										<label className={`${errors.sign && touched.sign ? 'error' : ''}`}>
+											<Field type="checkbox" name="sign" />
+											<p className="warning">
+												Genom att signera intygar jag att ovanstående är korrekt
+												och sanningsenligt samt att sektionen får lagra
+												informationen i detta formulär tillsvidare i
+												bokföringssyfte.
+											</p>
+										</label>
+                  </div>
+                  <button type="submit">Submit</button>
+                </Form>
+              )}
+            </Formik>
+          </>
+        )}
+      </div>
+    </>
+  );
 }
 
 export default MainPage;
