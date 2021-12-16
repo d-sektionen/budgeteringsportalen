@@ -1,18 +1,13 @@
-@import '../../constants/_vars.scss';
+@import '../../../constants/_vars.scss';
 
-.descr-text {
+.t-info-title {
     padding: $base-padding;
     min-width: 15%;
     flex-grow: 1;
     background-color: white;
-    color: black;
-    text-align: left;
     border: 1px solid black;
-    
-}
-
-
-.descr-title {
+    color: black;
     text-align: center;
+    margin-top: $base-padding/2;
     font-weight: bold;
 }

@@ -4,6 +4,7 @@ import InfoBox from './infobox';
 import SpecBox from './specbox';
 import TextRow from './textrow';
 
+import './data.scss';
 
 const specifications = [
   {
@@ -13,16 +14,16 @@ const specifications = [
     sum: 20,
   },
   {
-    spec: "Kakor",
-    amount: 4,
+    spec: "Många kakor",
+    amount: 10000,
     price: 5,
-    sum: 20,
+    sum: 50000,
   },
   {
-    spec: "Kakor",
-    amount: 4,
-    price: 5,
-    sum: 20,
+    spec: "dawodpamd dankwdnandk dwdajnwdnawdno dawoindnkj dahwiudwkdawdwjwadnjakwdwdwdk",
+    amount: 23131,
+    price: 321,
+    sum: 312344,
   },
 ]
 

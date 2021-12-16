@@ -1,4 +1,4 @@
-@import '../../constants/_vars.scss';
+@import '../../../constants/_vars.scss';
 
 .spec-row{
     display: flex;
@@ -37,3 +37,15 @@
     }
 
 }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: black;
+  }
+  
+td, th {
+    border: 1px solid #000;
+    padding: 8px;
+    background-color: #fff;
+  }

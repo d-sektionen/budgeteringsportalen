@@ -4,7 +4,7 @@ import LeftTextBox from "./textbox/lefttextbox.jsx";
 import MultilineBox from "./textbox/multilinebox.jsx";
 import Button from "./button/button.jsx";
 import PriceBox from "./priceBox/pricebox.jsx";
-import retrieveLiuid from "../utility/user.js";
+import {retrieveLiuid} from "../utility/user.js";
 import { useEffect, useState } from "react";
 import { Formik, Form, FieldArray, Field } from "formik";
 import * as Yup from "yup";
@@ -106,10 +106,23 @@ function MainPage() {
     const d = new Date();
     setDate(d.toDateString());
   }, [date]);
-
+  
+  /*
   const addPriceBox = (priceBoxes) => {
     console.log("add box");
     priceBoxes.push({ spec: "", price: 0, amount: 0 });
+  };
+  */
+
+  const onClickSubmit = async () => {
+    console.log("clicked submit");
+    const response = await fetch("http://localhost:8000" + '/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: "text" })
+    })
+    console.log(response.status)
+    
   };
 
   useEffect(() => {}, []);
@@ -117,8 +130,9 @@ function MainPage() {
     <>
       <div id="mainPage">
         {!liuid && (
-          <Button href="https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000" />
+          <Button href="http://localhost:8000/account/token/?redirect=http://localhost:3000"/>
         )}
+        {/* <Button href="https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000" /> */}
         {liuid && name && (
           <>
             <Formik
@@ -227,7 +241,7 @@ function MainPage() {
 											</p>
 										</label>
                   </div>
-                  <button type="submit">Submit</button>
+                  <Button title="Submit" onClick={onClickSubmit}></Button>
                 </Form>
               )}
             </Formik>

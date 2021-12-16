@@ -8,7 +8,7 @@ class PdfComponent extends React.Component {
     render() {
       return (
         <div>
-          <ReactToPrint
+          <ReactToPrint 
             content={() => this.componentRef}
             trigger={() => <button className="btn btn-primary">Print to PDF!</button>}
           />

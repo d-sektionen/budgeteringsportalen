@@ -9,6 +9,7 @@ import axios from 'axios'
 const request = config => {
   // if config.endpoint is not a full path with the "https://" or "http://"
   // prefix the BASE_URL is prepended to the endpoint
+  let BASE_URL = "http://localhost:8000"
   const isFullUrl = /^https?:\/\//
   const url = isFullUrl.test(config.endpoint)
     ? config.endpoint
@@ -20,6 +21,7 @@ const request = config => {
   const headers = { ...oldHeaders, Authorization: `Bearer ${token}` }
 
   // Send request using axios library
+  console.log({config, headers, url})
   return axios({ ...config, headers, url })
 }
 
