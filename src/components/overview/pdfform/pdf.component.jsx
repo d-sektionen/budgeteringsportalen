@@ -1,22 +1,21 @@
-import React from 'react';
-import ReactToPrint from 'react-to-print';
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 import DataComponent from './data.component';
 
-class PdfComponent extends React.Component {
+const PdfComponent = () =>  {
+
+      const componentRef = useRef()
+      const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+      });
     
-    render() {
       return (
         <div>
-          <ReactToPrint 
-            content={() => this.componentRef}
-            trigger={() => <button className="btn btn-primary">Print to PDF!</button>}
-          />
-          <DataComponent ref={(response) => (this.componentRef = response)} />
+          <DataComponent ref={componentRef} />
+          <button className="btn btn-primary" onClick={handlePrint} >Print to PDF!</button>
         </div>
       );
-    }
-
 }
 
 export default PdfComponent;

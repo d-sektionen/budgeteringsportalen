@@ -11,19 +11,16 @@ const specifications = [
     spec: "Kakor",
     amount: 4,
     price: 5,
-    sum: 20,
-  },
-  {
-    spec: "Många kakor",
-    amount: 10000,
-    price: 5,
-    sum: 50000,
   },
   {
     spec: "dawodpamd dankwdnandk dwdajnwdnawdno dawoindnkj dahwiudwkdawdwjwadnjakwdwdwdk",
+    amount: 10000,
+    price: 5,
+  },
+  {
+    spec: "Många kakor",
     amount: 23131,
     price: 321,
-    sum: 312344,
   },
 ]
 
@@ -44,18 +41,16 @@ const userInfo = {
     values: [1,2,3,4,5],
 }
   
-class DataComponent extends React.Component {    
+const DataComponent = React.forwardRef((props, ref) => {    
 
-    render() {
       return (
-        <div className="form-container">
+        <div className="form-container" ref={ref}>
             <SpecBox values={specifications}/>
             <DescriptionBox title={description.title} text={description.descr}/>
             <InfoBox title={accountInfo.title} rowTitles={accountInfo.rowTitles} values={accountInfo.values}/>
             <InfoBox title={userInfo.title} rowTitles={userInfo.rowTitles} values={userInfo.values}/>
         </div>
       );
-    }
-  }
+  })
 
   export default DataComponent;

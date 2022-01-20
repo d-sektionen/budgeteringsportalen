@@ -4,7 +4,7 @@ import LeftTextBox from "./textbox/lefttextbox.jsx";
 import MultilineBox from "./textbox/multilinebox.jsx";
 import Button from "./button/button.jsx";
 import PriceBox from "./priceBox/pricebox.jsx";
-import {retrieveLiuid} from "../utility/user.js";
+import {retrieveLiuid} from "../../utility/user.js";
 import { useEffect, useState } from "react";
 import { Formik, Form, FieldArray, Field } from "formik";
 import * as Yup from "yup";
@@ -129,10 +129,10 @@ function MainPage() {
   return (
     <>
       <div id="mainPage">
-        {!liuid && (
+        {/* {!liuid && (
           <Button href="http://localhost:8000/account/token/?redirect=http://localhost:3000"/>
-        )}
-        {/* <Button href="https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000" /> */}
+        )} */}
+        {<Button href="https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000" />}
         {liuid && name && (
           <>
             <Formik

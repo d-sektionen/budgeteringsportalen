@@ -1,7 +1,7 @@
 import Button from '../mainpage/button/button.jsx';
 import OvListElement from './ovlistelement.jsx';
 import PdfComponent from './pdfform/pdf.component.jsx';
-import {getExpenses} from '../utility/user'
+import {getExpenses} from '../../utility/user'
 
 
 import './overview.scss';
