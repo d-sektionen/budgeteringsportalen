@@ -22,7 +22,6 @@
 .ovListElement{
 	width: calc(100% - 24px);
 	height: 48px;
-	line-height: 48px;
 	color: white;
 	background-color: #333333;
 	margin-top: 4px;
@@ -42,4 +41,12 @@
 #approvedDegSymbol{
 	float: right;
 	width: 40px;
+}
+
+.disabled {
+	background-color: grey;
+}
+
+.approved {
+	background-color: green;
 }

@@ -15,7 +15,7 @@ function OvListElement({ doc }) {
     const closeModal = () => {
         setIsOpen(false)
     }
-		
+
 	return (
 		<>
 			<Modal
@@ -23,17 +23,17 @@ function OvListElement({ doc }) {
 				/* onAfterOpen={afterOpenModal}
 				onRequestClose={closeModal} */
 				contentLabel="Test">
-				<p onClick={closeModal}>X</p>
+				<button onClick={closeModal}>X</button>
 				<PdfComponent data={doc}/>
 			</Modal>
 			<div className='ovListElement' onClick={openModal}>
-				Utlägg från {doc.user.username + " " + doc.date}
-				{/* <div id="approvedKasSymbol">
-                    aKas: { doc.approvedKas ?"Approved": "Not approved"}
-                </div>
-                <div id="approvedDegSymbol">
-                    aDeg: { doc.approvedDeg ?"Approved": "Not approved"}
-                </div> */}
+				<p>Utlägg från {doc.user.username + " " + doc.date}</p>
+				
+				<div>
+					<button className={`${doc.approvedKas ? 'approved' : 'disabled'}`}>Attesterat</button>
+					<button className={`${doc.approvedDeg ? 'approved' : 'disabled'}`}>Bokfört</button>
+					<button className={`${doc.payed ? 'approved' : 'disabled'}`}>Betalt</button>
+				</div>
 			</div>
 		</>
 	);

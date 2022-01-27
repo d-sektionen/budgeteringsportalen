@@ -58,14 +58,16 @@ function OverView() {
         location: "Linköping",
         committee: "1",
         approvedKas: false,
-        approvedDeg: false,
+        approvedDeg: true,
         payed: false,
         ipaddr: "127.0.0.1",
-        total_sum: 123123.0
+        total_sum: 123123.0,
+        signed: true,
     }
     for (let i = 0; i < 12; i++) {
         entries.push(tempUser);
     }
+
 
     return (
         <>
