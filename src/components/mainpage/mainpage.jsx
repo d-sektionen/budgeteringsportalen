@@ -230,6 +230,7 @@ function MainPage() {
                       />
                     ))}
                   </div>
+                  {/*<input type="file"/>*/}
                   <div className="textboxRow">
 										<label className={`${errors.sign && touched.sign ? 'error' : ''}`}>
 											<Field type="checkbox" name="sign" />
