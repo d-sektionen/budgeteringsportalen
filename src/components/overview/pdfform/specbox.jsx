@@ -19,7 +19,7 @@ function SpecBox({ values }) {
         setTotal(calcTotal())
     }, [])
 
-
+console.log(values)
     return <>
         <div className="specContainer">
             <div className="stitle srow" >

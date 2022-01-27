@@ -3,7 +3,7 @@ import { useReactToPrint } from 'react-to-print';
 
 import DataComponent from './data.component';
 
-const PdfComponent = () =>  {
+const PdfComponent = (data = {}) =>  {
 
       const componentRef = useRef()
       const handlePrint = useReactToPrint({
@@ -12,7 +12,7 @@ const PdfComponent = () =>  {
     
       return (
         <div>
-          <DataComponent ref={componentRef} />
+          <DataComponent ref={componentRef} values={data}/>
           <button className="btn btn-primary" onClick={handlePrint} >Print to PDF!</button>
         </div>
       );

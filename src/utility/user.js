@@ -12,8 +12,8 @@ const retrieveLiuid = async () => {
     }
 }
 
-const getExpenses = async data => {
-    let url = "/budget/expense-entries/"
+const getExpenses = async (data) => {
+    let url = `/budget/expense-entries/?liuid=${data.liuid}`
     let res = await get(url)
     const j = await res.json()// funkar inte!!
     return j.data

@@ -6,12 +6,12 @@
     flex-grow: 1;
     background-color: white;
     color: black;
-    text-align: left;
-    
+    text-align: left;    
 }
 
 
 .descr-title {
+    margin-top: $base-padding/2;
     text-align: center;
     font-weight: bold;
 }

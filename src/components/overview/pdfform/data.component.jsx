@@ -6,51 +6,33 @@ import TextRow from './textrow';
 
 import './data.scss';
 
-const specifications = [
-  {
-    spec: "Kakor",
-    amount: 4,
-    price: 5,
-  },
-  {
-    spec: "dawodpamd dankwdnandk dwdajnwdnawdno dawoindnkj dahwiudwkdawdwjwadnjakwdwdwdk",
-    amount: 10000,
-    price: 5,
-  },
-  {
-    spec: "Många kakor",
-    amount: 23131,
-    price: 321,
-  },
-]
+// TODO: datat kommer konstigt inpacketerat, är data.values.data liksom 
+const DataComponent = React.forwardRef(({ values }, ref) => {
 
-const description = {
-    title: "Ändamål med inköpet",
-    descr: "Beskrivning av köpet djnawkndpnawdn dj aowjdwjwaj awd  jwadoijdwåaiojwj",
-}
+  const { data } = values
 
-const accountInfo = {
-    title: "Kontouppgifter för överföring",
-    rowTitles: ["Clearing-nr", "Konto-nr", "Bank"],
-    values: [1,2,3],
-}
+  console.log(data)
+  const userValues = [data.committee, data.user.username, data.name, data.location, data.date]
+  const bankValues = [data.clearingNr, data.bankNr, data.bankName]
 
-const userInfo = {
-    title: "Övringa Uppgifter",
-    rowTitles: ["Utskott", "Liu-ID", "Namn", "Ort", "Datum"],
-    values: [1,2,3,4,5],
-}
-  
-const DataComponent = React.forwardRef((props, ref) => {    
 
-      return (
-        <div className="form-container" ref={ref}>
-            <SpecBox values={specifications}/>
-            <DescriptionBox title={description.title} text={description.descr}/>
-            <InfoBox title={accountInfo.title} rowTitles={accountInfo.rowTitles} values={accountInfo.values}/>
-            <InfoBox title={userInfo.title} rowTitles={userInfo.rowTitles} values={userInfo.values}/>
-        </div>
-      );
-  })
+  return (
+    <div className="form-container" ref={ref}>
+      <SpecBox values={data.articles} />
+      <DescriptionBox title={"Ändamål med inköpet"} text={data.description} />
+      <InfoBox title={"Kontouppgifter för överföring"} rowTitles={["Clearing-nr", "Konto-nr", "Bank"]} values={bankValues} />
+      <InfoBox title={"Övringa Uppgifter"} rowTitles={["Utskott", "Liu-ID", "Namn", "Ort", "Datum"]} values={userValues} />
+      <div>
+        <input type="checkbox" id="horns" name="horns" checked />
+        <p className="warning">
+          Genom att signera intygar jag att ovanstående är korrekt
+          och sanningsenligt samt att sektionen får lagra
+          informationen i detta formulär tillsvidare i
+          bokföringssyfte.
+        </p>
+      </div>
+    </div>
+  );
+})
 
-  export default DataComponent;
+export default DataComponent;
