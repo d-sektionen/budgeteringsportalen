@@ -19,7 +19,7 @@ const getExpenses = async (data) => {
     return j.data
 }
 
-const submitFormToBackend = async data =>{
+const submitFormToBackend = async data => {
     //FIXA SEN
     let url = "/budget/expense-entries/"
     let res = await post(url)

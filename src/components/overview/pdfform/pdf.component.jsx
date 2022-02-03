@@ -28,11 +28,13 @@ const PdfComponent = (data = {}) =>  {
       return (
         <div>
           <DataComponent ref={componentRef} values={data}/>
+          <div className="">
           <FormButton type={"print"} handleClick={handlePrint}/>
           <FormButton type={"attest"} handleClick={handleAttest}/>
           <FormButton type={"book"} handleClick={handleBooked}/>
           <FormButton type={"payed"} handleClick={handlePayed}/>
           <FormButton type={"deny"} handleClick={handleDenied}/>
+          </div>
         </div>
       );
 }

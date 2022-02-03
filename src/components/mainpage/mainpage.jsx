@@ -4,6 +4,7 @@ import LeftTextBox from "./textbox/lefttextbox.jsx";
 import MultilineBox from "./textbox/multilinebox.jsx";
 import Button from "./button/button.jsx";
 import PriceBox from "./priceBox/pricebox.jsx";
+import FileInput from "./fileInput/fileInput.jsx";
 import {retrieveLiuid} from "../../utility/user.js";
 import { useEffect, useState } from "react";
 import { Formik, Form, FieldArray, Field } from "formik";
@@ -11,7 +12,7 @@ import * as Yup from "yup";
 import "./mainpage.scss";
 import CalculatedField from "./textbox/calculatedField.jsx";
 import SelectBox from "./textbox/selectBox.jsx";
-
+import Login from "../layout/login.jsx";
 
 const requiredField = "Du måste fylla i detta fält!";
 const UtlaggSchema = Yup.object().shape({
@@ -31,9 +32,10 @@ const UtlaggSchema = Yup.object().shape({
       spec: Yup.string().required(requiredField),
       price: Yup.number().required(requiredField),
       amount: Yup.number().required(requiredField),
-    })
+    }),
   ),
   utskott: Yup.string().required(requiredField),
+  fileinput: Yup.string().matches(/.pdf$/).required(requiredField),
 });
 
 function MainPage() {
@@ -41,6 +43,8 @@ function MainPage() {
   const [name, setName] = useState();
   const [date, setDate] = useState();
 
+  const [wrongFileFormat, setWrongFileFormat] = useState();
+  
   const textContentBank = [
     {
       title: "Clearing-nr",
@@ -107,6 +111,19 @@ function MainPage() {
     setDate(d.toDateString());
   }, [date]);
   
+  const checkFileTypes = () => {
+    setWrongFileFormat(false)
+    const files = document.getElementById('fileItem').files // FileList of selected files   
+    for (let i = 0 ; i < files.length ; i++){
+      let fileType = files[i].type
+      if (fileType && fileType.substring(fileType.length - 4, fileType.length) != "/pdf"){
+        setWrongFileFormat(true)
+        console.log(document.getElementById("fileItem").files)
+        return
+      }
+    }
+  }
+
   /*
   const addPriceBox = (priceBoxes) => {
     console.log("add box");
@@ -116,13 +133,14 @@ function MainPage() {
 
   const onClickSubmit = async () => {
     console.log("clicked submit");
+    /*
     const response = await fetch("http://localhost:8000" + '/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: "text" })
     })
     console.log(response.status)
-    
+    */
   };
 
   useEffect(() => {}, []);
@@ -132,7 +150,7 @@ function MainPage() {
         {/* {!liuid && (
           <Button href="http://localhost:8000/account/token/?redirect=http://localhost:3000"/>
         )} */}
-        {<Button href="https://backend.d-sektionen.se/account/token/?redirect=http://localhost:3000" />}
+        {!liuid && (<Login />)}
         {liuid && name && (
           <>
             <Formik
@@ -230,7 +248,14 @@ function MainPage() {
                       />
                     ))}
                   </div>
-                  {/*<input type="file"/>*/}
+                    <FileInput
+                      name="fileinput"
+                      error={errors.fileinput}
+                      handleChange={handleChange}
+                      id="filinput"
+                      
+
+                    />
                   <div className="textboxRow">
 										<label className={`${errors.sign && touched.sign ? 'error' : ''}`}>
 											<Field type="checkbox" name="sign" />
