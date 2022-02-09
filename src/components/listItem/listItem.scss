@@ -1,0 +1,32 @@
+.listItem {
+  width: calc(100% - 24px);
+  height: 48px;
+  color: white;
+  background-color: #333333;
+  margin-top: 4px;
+  padding: 4px;
+  padding-left: 12px;
+
+  cursor: pointer;
+}
+
+.listItem:hover {
+  background-color: #222222;
+}
+
+#approvedKasSymbol {
+  float: right;
+  width: 40px;
+}
+#approvedDegSymbol {
+  float: right;
+  width: 40px;
+}
+
+.disabled {
+  background-color: grey;
+}
+
+.approved {
+  background-color: green;
+}

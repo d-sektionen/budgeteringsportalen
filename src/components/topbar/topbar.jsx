@@ -1,12 +1,12 @@
 import './topbar.scss';
-import Menu from '../layout/menu';
 
 import { FiUser } from 'react-icons/fi';
+import Sidebar from '../sidebar/Sidebar';
 
 const TopBar = () => {
 	return (
 		<div id='topBar'>
-			<Menu />
+			<Sidebar />
 			<span>Räkning till d-sektionen</span>
 			<FiUser />
 		</div>

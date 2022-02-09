@@ -1,0 +1,44 @@
+@import "../../../constants/vars";
+
+.inputTextBox {
+  display: flex;
+  margin-top: $base-padding/2;
+  flex-wrap: wrap;
+
+  input {
+    font-size: $standard-font-size;
+    background-color: #333333;
+    padding: $base-padding;
+    color: white;
+    outline: none;
+    flex-grow: 10;
+    border: 0;
+  }
+
+  .title {
+    font-size: $standard-font-size;
+    background-color: #212121;
+    filter: none;
+    min-width: 15%;
+    font-weight: 400;
+    flex-grow: 1;
+  }
+
+  .untouched {
+    color: $placeholder-color;
+  }
+
+  .touched {
+    color: white;
+  }
+}
+
+.displayBox {
+  background-color: #333333;
+  flex-grow: 10;
+  padding: $base-padding;
+}
+
+.error {
+  border: 1px solid red;
+}

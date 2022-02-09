@@ -1,0 +1,19 @@
+@import "../../constants/vars";
+
+#mainPage {
+  padding: 8px;
+  font-size: 18px;
+  text-align: left;
+  color: white;
+  background-color: #111111;
+  margin-top: 32px;
+
+  label {
+    display: flex;
+    padding: $base-padding;
+  }
+
+  input[type="checkbox" i] {
+    transform: scale(2);
+  }
+}

@@ -1,0 +1,19 @@
+#overView {
+  display: flex;
+  padding: 8px;
+  font-size: 18px;
+  text-align: left;
+  color: white;
+  background-color: #111111;
+  margin-top: 32px;
+}
+
+#overViewList {
+  position: flex;
+  top: 128px;
+  left: auto;
+  height: 512px;
+  width: 512px;
+  overflow-y: auto;
+  border: 1px solid #333333;
+}
