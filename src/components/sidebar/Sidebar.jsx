@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiX, FiMenu, FiGithub } from "react-icons/fi";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../../images/round.svg";
 
 import "./sidebar.scss";
@@ -17,15 +17,24 @@ const entries = [
 ];
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const escFunction = (event) => {
+    if (event.keyCode === 27) setOpen(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+    return () => document.removeEventListener("keydown", escFunction, false);
+  }, []);
 
   return (
     <div className="menuContainer">
       {isOpen && (
         <div className="menu">
           <div className="header">
-            <FiX className="exit" onClick={() => setIsOpen(!isOpen)} />
+            <FiX className="exit" onClick={() => setOpen(!isOpen)} />
             <a className="imgWrapper" href="https://d-sektionen.se">
               <img src={logo} alt="D-sek logo" useMap="circle" />
               <map name="circle">
@@ -36,8 +45,14 @@ const Sidebar = () => {
 
           <ul>
             {entries.map((entry) => (
-              <li>
-                <p onClick={() => navigate(entry.link)} className="menuItem">
+              <li key={entry.title}>
+                <p
+                  onClick={() => {
+                    setOpen(false);
+                    navigate(entry.link);
+                  }}
+                  className="menuItem"
+                >
                   {entry.title}
                 </p>
               </li>
@@ -55,10 +70,10 @@ const Sidebar = () => {
         </div>
       )}
       <FiMenu
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setOpen(!isOpen)}
         style={{ visibility: `${isOpen ? "hidden" : "visible"}` }}
       />
-      {isOpen && <div className="darkOverlay" />}
+      {isOpen && <div onClick={() => setOpen(false)} className="darkOverlay" />}
     </div>
   );
 };
