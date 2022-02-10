@@ -1,0 +1,21 @@
+@import "../../../constants/vars";
+
+.multilineBox {
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    resize: none;
+    background-color: $background-color-3;
+    border: 0px;
+    color: white;
+    font-size: $standard-font-size;
+    font-family: $dsek-font-order;
+
+    padding: $base-padding;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
