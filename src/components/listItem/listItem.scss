@@ -1,12 +1,32 @@
+@import '../../constants/vars';
+
+.listItem:first-of-type {
+  margin-top: 0;
+}
+
 .listItem {
-  width: calc(100% - 24px);
-  height: 48px;
   color: white;
   background-color: #333333;
-  margin-top: 4px;
-  padding: 4px;
-  padding-left: 12px;
+  margin-top: $base-padding/2;
+  padding: $base-padding;
 
+  cursor: pointer;
+
+  .disabled {
+  background-color: grey;
+}
+
+
+
+.approved {
+  background-color: green;
+}
+
+}
+
+.exitButton {
+  font-size: 2em;
+  color: $placeholder-color;
   cursor: pointer;
 }
 
@@ -14,19 +34,3 @@
   background-color: #222222;
 }
 
-#approvedKasSymbol {
-  float: right;
-  width: 40px;
-}
-#approvedDegSymbol {
-  float: right;
-  width: 40px;
-}
-
-.disabled {
-  background-color: grey;
-}
-
-.approved {
-  background-color: green;
-}

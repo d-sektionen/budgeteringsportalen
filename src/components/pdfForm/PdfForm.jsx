@@ -8,8 +8,9 @@ import "./pdfForm.scss";
 
 const PdfForm = ({ data = {} }) => {
   const ref = useRef();
+
   const handlePrint = useReactToPrint({
-    content: () => Reflect.current,
+    content: () => ref.current,
   });
   const handleAttest = () => {
     console.log("Attestera");
@@ -35,7 +36,7 @@ const PdfForm = ({ data = {} }) => {
   const bankValues = [data.clearingNr, data.bankNr, data.bankName];
 
   return (
-    <div>
+    <div style={{margin: 'auto'}}>
       <div className="form-container" ref={ref}>
         <SpecBox values={data.articles} />
         <div>
@@ -81,7 +82,7 @@ const PdfForm = ({ data = {} }) => {
           </p>
         </div>
       </div>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'end', width: '80%', margin: 'auto'}}>
         <FormButton
           print
           attest
@@ -94,7 +95,7 @@ const PdfForm = ({ data = {} }) => {
           handleAttest={handleAttest}
           handleDenied={handleDenied}
         />
-      </div>
+        </div>
     </div>
   );
 };

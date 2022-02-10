@@ -61,7 +61,7 @@ function OverView() {
     return (
         <>
             <div id='overView' className="container">
-                <h1>Översikt</h1>
+                <h2>Översikt</h2>
                 <div id='overViewList'>
                     {entries && entries.map((e, i) => (<ListItem doc={e} key={i}/>))}
                 </div>

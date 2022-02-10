@@ -35,7 +35,14 @@ const UtlaggSchema = Yup.object().shape({
     })
   ),
   utskott: Yup.string().required(requiredField),
-  fileinput: Yup.string().matches(/.pdf$/).required(requiredField),
+  fileinput: Yup.array().nullable().test("correct-type", requiredField, () => {
+    const files = document.getElementById("fileinput").files; 
+    for (let i = 0; i < files.length; i++) {
+      if(files[i].type !== "application/pdf"){
+        return false;
+      }
+    }
+    return true;}),
 });
 
 const ExpenseForm = ({ onClickSubmit }) => {
@@ -90,7 +97,7 @@ const ExpenseForm = ({ onClickSubmit }) => {
 
   const checkFileTypes = () => {
     setWrongFileFormat(false);
-    const files = document.getElementById("fileItem").files; // FileList of selected files
+    const files = document.getElementById("fileItem").files; 
     for (let i = 0; i < files.length; i++) {
       let fileType = files[i].type;
       if (
@@ -121,6 +128,8 @@ const ExpenseForm = ({ onClickSubmit }) => {
               city: "Linköping",
               signDate: date,
               utskott: "",
+              fileinput: [],
+
             }}
             validationSchema={UtlaggSchema}
             onSubmit={async (values) => {
@@ -208,7 +217,7 @@ const ExpenseForm = ({ onClickSubmit }) => {
                   name="fileinput"
                   error={errors.fileinput}
                   handleChange={handleChange}
-                  id="filinput"
+                  id="fileinput"
                 />
                 <div className="textboxRow">
                   <label

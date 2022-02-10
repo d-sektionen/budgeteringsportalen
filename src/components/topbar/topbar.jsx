@@ -8,7 +8,7 @@ const TopBar = () => {
 		<div id='topBar'>
 			<Sidebar />
 			<span>Räkning till d-sektionen</span>
-			<FiUser />
+			<div/>
 		</div>
 	);
 };

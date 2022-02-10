@@ -13,7 +13,9 @@ function MainPage() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const access = urlParams.get("access");
-    login(access)
+    if (!user) {
+      login(access)
+    }
   }, []);
 
   const onClickSubmit = async () => {
@@ -30,7 +32,7 @@ function MainPage() {
 
   return (
       <div id="mainPage">
-        {authFinished && !user.liuid && (<Login />)}
+        {!user && (<Login />)}
         {user && (
           <ExpenseForm onClickSubmit={onClickSubmit} />
         )}

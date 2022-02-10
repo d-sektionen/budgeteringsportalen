@@ -6,14 +6,35 @@
   color: white;
   background-color: #111111;
   margin-top: 32px;
+
+  > h2 {
+    text-align: center;
+  }
+
+  #overViewList {
+    position: flex;
+    max-height: 80%;
+    width: 100%;
+    overflow-y: auto;
+    border: 1px solid #333333;
+    margin: auto;
+  }
 }
 
-#overViewList {
-  position: flex;
-  top: 128px;
-  left: auto;
-  height: 512px;
-  width: 512px;
-  overflow-y: auto;
-  border: 1px solid #333333;
+
+
+#overView ::-webkit-scrollbar {
+  width: 16px;
+}
+
+#overView ::-webkit-scrollbar-track {
+  background: #888888; 
+}
+ 
+#overView ::-webkit-scrollbar-thumb {
+  background: #333333; 
+}
+
+#overView ::-webkit-scrollbar-thumb:hover {
+  background: #222222; 
 }

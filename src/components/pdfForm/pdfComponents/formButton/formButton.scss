@@ -1,0 +1,28 @@
+@import '../../../../constants/vars';
+
+
+.formButton {
+  width: 30%;
+  display: flex;
+
+  .roundButton {
+    display: flex;
+    background-color: $placeholder-color;
+    border: none;
+    color: white;
+    padding: $base-padding;
+    text-align: center;
+    font-size: $standard-font-size * 1.2;
+    margin: auto;
+    border-radius: 3em;
+    cursor: pointer;
+  }
+
+  .roundButton:hover {
+    filter: brightness(85%);
+  }
+
+
+}
+
+

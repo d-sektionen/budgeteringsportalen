@@ -1,11 +1,10 @@
 #login {
     margin: auto;
     width: 50%;
-    color: white;
     background-color: #212121;
-    padding: 12px;
-    padding-top: 0px;
-    margin-top: 32px;
+    padding: 8px;
+    margin-bottom: 12px;
+    color: #f4f4f4;
 }
 
 #login a {
@@ -13,5 +12,12 @@
 }
 
 #login p {
-    margin-top: 12px;
+    color: white;
+    margin: 8px;
+    margin-top: 16px;
+    line-height: 1.4;
+}
+
+#login h1 {
+    margin: 8px;
 }

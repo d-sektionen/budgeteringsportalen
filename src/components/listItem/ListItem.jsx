@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import PdfComponent from "../pdfForm/PdfForm";
+import { FiX } from "react-icons/fi"
+import { FaCheckCircle, FaBook, FaDollarSign } from "react-icons/fa"
 
 import "./listItem.scss";
 
 function ListItem({ doc }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isStaff, setIsStaff] = useState(true);
 
   const openModal = () => {
     setIsOpen(true);
@@ -14,31 +17,49 @@ function ListItem({ doc }) {
     setIsOpen(false);
   };
 
+  const customStyles = {
+    content: {
+      maxWidth: 'fit-content',
+      display: 'flex',
+      margin: 'auto'
+    },
+  };
+
   return (
     <>
       <Modal
         isOpen={isOpen}
         /* onAfterOpen={afterOpenModal}
 				onRequestClose={closeModal} */
-        contentLabel="Test"
+        contentLabel="Item"
+        style={customStyles}
+        
       >
-        <button onClick={closeModal}>X</button>
-        <PdfComponent data={doc} />
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <FiX onClick={closeModal} className="exitButton" />
+          <PdfComponent data={doc} />
+        </div>
+
       </Modal>
       <div className="listItem" onClick={openModal}>
-        <p>Utlägg från {doc.user.username + " " + doc.date}</p>
+        <p>Utlägg av {doc.user.username + " " + doc.date.substring(0,10)}</p>
 
-        <div>
+        {isStaff &&
+        (<div>
           <button className={`${doc.approvedKas ? "approved" : "disabled"}`}>
             Attesterat
+            <FaCheckCircle />
           </button>
           <button className={`${doc.approvedDeg ? "approved" : "disabled"}`}>
             Bokfört
+            <FaBook />
           </button>
           <button className={`${doc.payed ? "approved" : "disabled"}`}>
             Betalt
+            <FaDollarSign />
           </button>
-        </div>
+        </div>)
+        }
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import PropTypes from "prop-types";
 
 export const AuthContext = createContext();
@@ -20,6 +20,14 @@ const AuthContextProvider = ({ children }) => {
     user: undefined,
     authFinished: false,
   });
+
+  
+/*   useEffect(() => {
+    dispatch({
+          type: 'AUTH_READY',
+          payload: undefined
+        })
+  }, []) */
 
   console.log(state);
   return (

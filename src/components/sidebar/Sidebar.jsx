@@ -3,6 +3,8 @@ import { FiX, FiMenu, FiGithub } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import logo from "../../images/round.svg";
 
+import Fade from '@material-ui/core/Fade';
+
 import "./sidebar.scss";
 
 const entries = [
@@ -31,7 +33,7 @@ const Sidebar = () => {
 
   return (
     <div className="menuContainer">
-      {isOpen && (
+      <Fade direction="right" in={isOpen} timeout={300}>
         <div className="menu">
           <div className="header">
             <FiX className="exit" onClick={() => setOpen(!isOpen)} />
@@ -42,7 +44,6 @@ const Sidebar = () => {
               </map>
             </a>
           </div>
-
           <ul>
             {entries.map((entry) => (
               <li key={entry.title}>
@@ -58,7 +59,6 @@ const Sidebar = () => {
               </li>
             ))}
           </ul>
-
           <div className="footer">
             <p>Sidan är utvecklad av Webbgruppen</p>
             <div>
@@ -68,10 +68,9 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-      )}
+      </Fade>
       <FiMenu
         onClick={() => setOpen(!isOpen)}
-        style={{ visibility: `${isOpen ? "hidden" : "visible"}` }}
       />
       {isOpen && <div onClick={() => setOpen(false)} className="darkOverlay" />}
     </div>
