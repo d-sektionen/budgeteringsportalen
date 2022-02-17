@@ -49,8 +49,6 @@ const ExpenseForm = ({ onClickSubmit }) => {
   const [date, setDate] = useState();
   const { user, authFinished } = useAuthContext();
 
-  const [wrongFileFormat, setWrongFileFormat] = useState();
-
   const textContentBank = [
     {
       title: "Clearing-nr",
@@ -94,22 +92,6 @@ const ExpenseForm = ({ onClickSubmit }) => {
     const d = new Date();
     setDate(d.toDateString());
   }, [date]);
-
-  const checkFileTypes = () => {
-    setWrongFileFormat(false);
-    const files = document.getElementById("fileItem").files; 
-    for (let i = 0; i < files.length; i++) {
-      let fileType = files[i].type;
-      if (
-        fileType &&
-        fileType.substring(fileType.length - 4, fileType.length) !== "/pdf"
-      ) {
-        setWrongFileFormat(true);
-        console.log(document.getElementById("fileItem").files);
-        return;
-      }
-    }
-  };
 
   return (
     <>

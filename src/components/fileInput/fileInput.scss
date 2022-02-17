@@ -9,6 +9,10 @@ input[type="file"] {
 .file-input-label {
     display: block;
     align-items: center;
-    justify-content: center;      
+    justify-content: center;     
+}
+
+.wrong-file-format {
+    font-size: 1.3em;
 }
 

@@ -14,7 +14,7 @@ const FileInput = ({ name, id, error, handleChange, isFormik = true }) => {
             multiple 
             onChange={handleChange}
             />
-            <label for={id} className="button file-input-label">
+            <label htmlFor={id} className="button file-input-label">
                 Bifoga kvitto
             </label>
 
@@ -23,7 +23,7 @@ const FileInput = ({ name, id, error, handleChange, isFormik = true }) => {
                 <p>{file.name}</p>
             ))}
 
-            {error && (<p>Ni måste bifoga en pdf!</p>)}
+            {error && (<div className='wrong-file-format'>Ni måste bifoga en pdf!</div>)}
 
         </div>
     )
