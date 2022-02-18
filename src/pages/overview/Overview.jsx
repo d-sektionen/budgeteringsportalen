@@ -1,15 +1,19 @@
 import ListItem from '../../components/listItem/ListItem';
+import {get, post} from "../../utility/request";
+
 
 import './overview.scss';
 import '../mainPage/mainpage.scss'
+import { useEffect,useState } from 'react';
 
 
 function OverView() {
-    let entries = [];
+    //let entries = [];
 
+    const [entries, setEntries] = useState([])
     const params = new URLSearchParams(document.location.search);
     const utlaggID = params.get("utlaggid");
-    console.log(utlaggID);
+    console.log(utlaggID);  
 
     const tempUser = {
         id: 1,
@@ -53,10 +57,27 @@ function OverView() {
         total_sum: 123123.0,
         signed: true,
     }
-    for (let i = 0; i < 12; i++) {
+    /* for (let i = 0; i < 12; i++) {
         entries.push(tempUser);
-    }
+    } */
 
+    useEffect(()=>{
+        get("/budget/expense-entries/").
+        then(r => {
+            //console.log(JSON.parse('{"specification": "specs", "count": 10, "price": 29.99}'))
+            let d = r.data
+            //console.log(d)
+            for (let index = 0; index < d.length; index++) {
+                let e = d[index];
+                console.log(e.articles)
+            //    e.articles = JSON.parse(e.articles)
+            }
+            setEntries(d) 
+        })
+    }, [])
+
+    
+    
 
     return (
         <>

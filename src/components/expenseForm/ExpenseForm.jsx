@@ -11,8 +11,11 @@ import SelectBox from "../boxes/selectBox/selectBox";
 import Title from "../title";
 import LeftTextBox from "../boxes/leftTextBox/lefttextbox";
 import FileInput from "../fileInput/fileInput";
+//import axios from 'axios'
+
 
 import "./expenseForm.scss";
+import axios from "axios";
 
 const requiredField = "Du måste fylla i detta fält!";
 const UtlaggSchema = Yup.object().shape({
@@ -44,6 +47,93 @@ const UtlaggSchema = Yup.object().shape({
     }
     return true;}),
 });
+
+const submitFunction = async (values) => {
+  //console.log(JSON.stringify(values, null, 2));
+  console.log(values);
+  
+  let formData = new FormData()
+  let file = values.fileinput
+
+  formData.append("file", file)
+  formData.append("document", JSON.stringify(values))
+  formData.append("name", values.name)
+  formData.append("bankName", values.bankName)
+  formData.append("bankNr", values.accountNumber)
+  formData.append("clearingNr", values.clearingNumber)
+  formData.append("location", values.location)
+  formData.append("articles", JSON.stringify(values.priceBoxes))
+  formData.append("description", values.description)
+  formData.append("committee", values.utskott + 1)
+  formData.append("date",new Date(Date.parse(values.signDate+" utc")).toISOString())
+
+
+
+  const token = window.localStorage.getItem('token')
+  const headers = {Authorization: `Bearer ${token}`,'Content-Type': 'application/x-www-form-urlencoded' }
+  
+  axios({
+    method:'post',
+    url:'http://localhost:8000/budget/expense-entries/',
+    data: formData,
+    headers: headers,
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (response) {
+      console.log(response);
+  });
+
+  
+  /* const response = await fetch("http://localhost:8000" + '/expensesportal', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: "text" })
+  }) */
+  //console.log(response.status)
+  
+
+  /* 
+  {
+    "description": "1",
+    "clearingNumber": "2345",
+    "accountNumber": "123",
+    "bankName": "db",
+    "priceBoxes": [
+      {
+        "spec": "1",
+        "price": 1,
+        "amount": 1,
+        "total": 1
+      }
+    ],
+    "liuId": "felli675",
+    "name": "felli675",
+    "city": "Linköping",
+    "utskott": "0",
+    "fileinput": "C:\\fakepath\\Lab 1.pdf",
+    "sign": true
+  }
+ */
+};
+
+
+const onChange = (event) => {
+  const file = event.target.files[0];
+  //formik.setFieldValue("file", file);
+  const reader = new FileReader();
+  // temporarily show file contentx
+  reader.onload = (e) => {
+    // The file's text will be printed here
+    const result = e.target.result;
+    console.log("logging result from reader.onload " + result);
+    return result;
+  }; 
+
+  //shows the files values properly
+  reader.readAsText(file);
+};
 
 const ExpenseForm = ({ onClickSubmit }) => {
   const [date, setDate] = useState();
@@ -113,8 +203,8 @@ const ExpenseForm = ({ onClickSubmit }) => {
 
   return (
     <>
-      {authFinished && !user.liuid && <Login />}
-      {user && (
+      {/* !authFinished  &&*/ !user.liuid && <Login />}
+      {user && /* authFinished &&*/  (
         <>
           <Formik
             initialValues={{
@@ -132,10 +222,10 @@ const ExpenseForm = ({ onClickSubmit }) => {
 
             }}
             validationSchema={UtlaggSchema}
-            onSubmit={async (values) => {
+            onSubmit={submitFunction /*async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));
-            }}
+            } */}
           >
             {({ errors, values, touched, setFieldValue, handleChange }) => (
               <Form className="container" autoComplete="off">
@@ -217,6 +307,7 @@ const ExpenseForm = ({ onClickSubmit }) => {
                   name="fileinput"
                   error={errors.fileinput}
                   handleChange={handleChange}
+                  //handleChange={onChange}
                   id="fileinput"
                 />
                 <div className="textboxRow">
@@ -232,7 +323,8 @@ const ExpenseForm = ({ onClickSubmit }) => {
                     </p>
                   </label>
                 </div>
-                <Button title="Submit" onClick={onClickSubmit}></Button>
+                {/*/onClick={onClickSubmit*/}
+                <button type="submit" >Submit</button>
               </Form>
             )}
           </Formik>
