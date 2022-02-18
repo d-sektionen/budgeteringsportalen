@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import FormButton from "./pdfComponents/formButton/formButton.jsx";
+import rectLogo from "../../images/Color_white.svg";
 
 import SpecBox from "./pdfComponents/specBox/specbox.jsx";
 
@@ -38,6 +39,9 @@ const PdfForm = ({ data = {} }) => {
   return (
     <div style={{margin: 'auto'}}>
       <div className="form-container" ref={ref}>
+      <div className="rect-img-wrapper">
+        <img src={rectLogo} alt="d-sektionen logo"/>
+      </div>
         <SpecBox values={data.articles} />
         <div>
           <div>
@@ -82,7 +86,7 @@ const PdfForm = ({ data = {} }) => {
           </p>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'end', width: '80%', margin: 'auto'}}>
+      <div style={{ display: 'flex', justifyContent: 'end', width: '80%', margin: 'auto', padding: '16px'}}>
         <FormButton
           print
           attest

@@ -104,3 +104,14 @@
     border: 1px solid black;
   }
 }
+
+.rect-img-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: $base-padding;
+  margin-top: $base-padding * 2;
+  img {
+    max-width: 95%;
+    margin: 0;
+  }
+}
