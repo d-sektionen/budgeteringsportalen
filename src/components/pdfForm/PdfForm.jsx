@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import FormButton from "./pdfComponents/formButton/formButton.jsx";
 import rectLogo from "../../images/Color_white.svg";
+import {put} from "../../utility/request"
 
 import SpecBox from "./pdfComponents/specBox/specbox.jsx";
 
@@ -14,7 +15,18 @@ const PdfForm = ({ data = {} }) => {
     content: () => ref.current,
   });
   const handleAttest = () => {
-    console.log("Attestera");
+    const url = `/budget/expense-entries/${data.id}/approve/`
+
+    let formData = new FormData()
+    formData.append("approvedKas", true)
+    formData.append("user_id", 1)
+    put(url, formData).then((res) =>
+      console.log(res)
+    ).catch((res) =>
+      console.log(res)
+    )
+    console.log(data.id)
+
   };
   const handleBooked = () => {
     console.log("Bokfört");
@@ -35,7 +47,7 @@ const PdfForm = ({ data = {} }) => {
     data.date,
   ];
   const bankValues = [data.clearingNr, data.bankNr, data.bankName];
-
+  
   return (
     <div style={{margin: 'auto'}}>
       <div className="form-container" ref={ref}>
@@ -77,7 +89,7 @@ const PdfForm = ({ data = {} }) => {
             </div>
           ))}
         </div>
-        <div>
+        <div style={{ display: 'flex', paddingTop: 18 }}>
           <input type="checkbox" id="horns" name="horns" checked />
           <p className="warning">
             Genom att signera intygar jag att ovanstående är korrekt och

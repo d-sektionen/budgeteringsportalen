@@ -15,6 +15,7 @@ import FileInput from "../fileInput/fileInput";
 
 
 import "./expenseForm.scss";
+import "../button/button.scss";
 import axios from "axios";
 
 const requiredField = "Du måste fylla i detta fält!";
@@ -61,11 +62,12 @@ const submitFunction = async (values) => {
   formData.append("bankName", values.bankName)
   formData.append("bankNr", values.accountNumber)
   formData.append("clearingNr", values.clearingNumber)
-  formData.append("location", values.location)
+  formData.append("location", values.city)
   formData.append("articles", JSON.stringify(values.priceBoxes))
   formData.append("description", values.description)
-  formData.append("committee", values.utskott + 1)
-  formData.append("date",new Date(Date.parse(values.signDate+" utc")).toISOString())
+  formData.append("committee_id", values.utskott)
+  
+  formData.append("date",new Date().toISOString())
 
 
 
@@ -84,56 +86,9 @@ const submitFunction = async (values) => {
   .catch(function (response) {
       console.log(response);
   });
-
-  
-  /* const response = await fetch("http://localhost:8000" + '/expensesportal', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: "text" })
-  }) */
-  //console.log(response.status)
-  
-
-  /* 
-  {
-    "description": "1",
-    "clearingNumber": "2345",
-    "accountNumber": "123",
-    "bankName": "db",
-    "priceBoxes": [
-      {
-        "spec": "1",
-        "price": 1,
-        "amount": 1,
-        "total": 1
-      }
-    ],
-    "liuId": "felli675",
-    "name": "felli675",
-    "city": "Linköping",
-    "utskott": "0",
-    "fileinput": "C:\\fakepath\\Lab 1.pdf",
-    "sign": true
-  }
- */
 };
 
 
-const onChange = (event) => {
-  const file = event.target.files[0];
-  //formik.setFieldValue("file", file);
-  const reader = new FileReader();
-  // temporarily show file contentx
-  reader.onload = (e) => {
-    // The file's text will be printed here
-    const result = e.target.result;
-    console.log("logging result from reader.onload " + result);
-    return result;
-  }; 
-
-  //shows the files values properly
-  reader.readAsText(file);
-};
 
 const ExpenseForm = ({ onClickSubmit }) => {
   const [date, setDate] = useState();
@@ -185,8 +140,8 @@ const ExpenseForm = ({ onClickSubmit }) => {
 
   return (
     <>
-      {/* !authFinished  &&*/ !user.liuid && <Login />}
-      {user && /* authFinished &&*/  (
+{/*       { !authFinished  && !user.liuid && <Login />}
+      {user && authFinished &&  ( */}
         <>
           <Formik
             initialValues={{
@@ -230,6 +185,13 @@ const ExpenseForm = ({ onClickSubmit }) => {
                           }
                           title={"Lägg till rad"}
                         />
+                        {values.priceBoxes.length > 1 && <Button
+                          type="button"
+                          onClick={() =>
+                            arrayHelpers.pop()
+                          }
+                          title={"Ta bort rad"}
+                        />}
                       </>
                     )}
                   />
@@ -296,7 +258,7 @@ const ExpenseForm = ({ onClickSubmit }) => {
                   <label
                     className={`${errors.sign && touched.sign ? "error" : ""}`}
                   >
-                    <Field type="checkbox" name="sign" />
+                    <Field type="checkbox" name="sign"/>
                     <p className="warning">
                       Genom att signera intygar jag att ovanstående är korrekt
                       och sanningsenligt samt att sektionen får lagra
@@ -306,12 +268,12 @@ const ExpenseForm = ({ onClickSubmit }) => {
                   </label>
                 </div>
                 {/*/onClick={onClickSubmit*/}
-                <button type="submit" >Submit</button>
+                <button className="button" type="submit" >Submit</button>
               </Form>
             )}
           </Formik>
         </>
-      )}
+{/*       )} */}
     </>
   );
 };

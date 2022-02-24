@@ -69,7 +69,7 @@ const Sidebar = () => {
           </div>
         </div>
       </Fade>
-      <FiMenu
+      <FiMenu className="icon"
         onClick={() => setOpen(!isOpen)}
       />
       {isOpen && <div onClick={() => setOpen(false)} className="darkOverlay" />}

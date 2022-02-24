@@ -30,6 +30,9 @@ function MainPage() {
     */
   };
 
+  console.log(user)
+
+
   return (
       <div id="mainPage">
         {!user && (<Login />)}

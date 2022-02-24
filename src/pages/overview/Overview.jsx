@@ -66,12 +66,14 @@ function OverView() {
         then(r => {
             //console.log(JSON.parse('{"specification": "specs", "count": 10, "price": 29.99}'))
             let d = r.data
-            //console.log(d)
+            console.log(d)
             for (let index = 0; index < d.length; index++) {
                 let e = d[index];
+                e.committee = e.committee.name
                 console.log(e.articles)
             //    e.articles = JSON.parse(e.articles)
             }
+            console.log(d);
             setEntries(d) 
         })
     }, [])

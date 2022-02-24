@@ -20,6 +20,7 @@ const useLogin = () => {
         window.history.replaceState({}, document.title, "/");
 
         const user = await retrieveLiuid();
+        console.log(user)
         dispatch({
           type: "LOGIN",
           payload: user,
@@ -31,7 +32,7 @@ const useLogin = () => {
         const user = await retrieveLiuid();
         dispatch({
           type: "LOGIN",
-          payload: user,
+          payload: !user?.liuid ? undefined : user,
         });
       }
 

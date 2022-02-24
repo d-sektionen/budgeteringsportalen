@@ -1,5 +1,6 @@
 import React from "react";
 import { FaPrint, FaCheckCircle, FaBook, FaDollarSign, FaTimes } from 'react-icons/fa'
+import useAuthContext from '../../../../hooks/useAuthContext'
 
 import './formButton.scss'
 
@@ -24,13 +25,18 @@ function FormButton({
   handleAttest,
   handleDenied,
 }) {
+  const { user, authFinished } = useAuthContext();
+  console.log(user)
+
+  const canEdit = true//user && user.privileges.booking_admin
+
   return (
     <div className="formButton">
       {print && <Button handleClick={handlePrint}><FaPrint /></Button>}
-      {attest && <Button handleClick={handleAttest}><FaCheckCircle /></Button>}
-      {book && <Button handleClick={handleBooked}><FaBook /></Button>}
-      {payed && <Button handleClick={handlePayed}><FaDollarSign /></Button>}
-      {deny && <Button handleClick={handleDenied}><FaTimes /></Button>}
+      {attest && canEdit && <Button handleClick={handleAttest}><FaCheckCircle /></Button>}
+      {book && canEdit && <Button handleClick={handleBooked}><FaBook /></Button>}
+      {payed && canEdit && <Button handleClick={handlePayed}><FaDollarSign /></Button>}
+      {deny && canEdit && <Button handleClick={handleDenied}><FaTimes /></Button>}
     </div>
   );
 }

@@ -9,7 +9,7 @@ const retrieveLiuid = async () => {
     if(res.status !== 400 || res.status !== 401){
         const data = await res.json()
         console.log(data)
-        return {liuid:data.username, name:data.pretty_name}
+        return {liuid: data.username, name: data.pretty_name, committees: data.committees, treasurer: data.contact_for, privileges: data.privileges }
     }
 
 }

@@ -47,7 +47,7 @@ function SpecBox({ values }) {
               <p>{val.price}</p>
             </div>
             <div className="scol">
-              <p>{val.amount * val.price}</p>
+              <p>{(val.amount * val.price).toFixed(2)}</p>
             </div>
           </div>
         ))}

@@ -1,8 +1,11 @@
 import { Field } from 'formik';
+import { useState } from "react";
+
 
 import './lefttextbox.scss';
 
 const LeftTextBox = ({ title, temp, name, id, error, touched, isFormik = true }) => {
+
 	return (
 		<div className={`inputTextBox ${error ? 'error' : ''}`}>
 			<p className='title'>{title}</p>
