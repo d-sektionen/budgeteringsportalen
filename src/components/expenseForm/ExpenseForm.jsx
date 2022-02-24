@@ -65,7 +65,7 @@ const submitFunction = async (values) => {
   formData.append("location", values.city)
   formData.append("articles", JSON.stringify(values.priceBoxes))
   formData.append("description", values.description)
-  formData.append("committee_id", values.utskott)
+  formData.append("committee_id", values.utskott + 1)
   
   formData.append("date",new Date().toISOString())
 
