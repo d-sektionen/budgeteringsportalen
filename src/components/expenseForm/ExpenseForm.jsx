@@ -17,6 +17,7 @@ import FileInput from "../fileInput/fileInput";
 import "./expenseForm.scss";
 import "../button/button.scss";
 import axios from "axios";
+import { post } from "../../utility/request";
 
 const requiredField = "Du måste fylla i detta fält!";
 const UtlaggSchema = Yup.object().shape({
@@ -49,7 +50,7 @@ const UtlaggSchema = Yup.object().shape({
     return true;}),
 });
 
-const submitFunction = async (values) => {
+const submitFunction = async (values, {resetForm}) => {
   //console.log(JSON.stringify(values, null, 2));
   console.log(values);
   
@@ -69,23 +70,23 @@ const submitFunction = async (values) => {
   
   formData.append("date",new Date().toISOString())
 
-
-
   const token = window.localStorage.getItem('token')
-  const headers = {Authorization: `Bearer ${token}`,'Content-Type': 'application/x-www-form-urlencoded' }
+  //const config = {Authorization: `Bearer ${token}`,'Content-Type': 'application/x-www-form-urlencoded' }
+  const config = {'Content-Type': 'application/x-www-form-urlencoded' }
   
-  axios({
-    method:'post',
-    url:'http://localhost:8000/budget/expense-entries/',
-    data: formData,
-    headers: headers,
-  })
+  post('/budget/expense-entries/', formData, config)
   .then(function (response) {
-    console.log(response);
+    console.log(response.status);
+    if(response.status === 201){
+      resetForm()
+      alert("Success")
+    }
   })
   .catch(function (response) {
       console.log(response);
   });
+
+  
 };
 
 

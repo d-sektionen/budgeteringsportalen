@@ -8,12 +8,12 @@ import { useEffect,useState } from 'react';
 
 
 function OverView() {
-    //let entries = [];
-
     const [entries, setEntries] = useState([])
     const params = new URLSearchParams(document.location.search);
     const utlaggID = params.get("utlaggid");
-    console.log(utlaggID);  
+    //console.log(utlaggID);  
+
+    
 
     const tempUser = {
         id: 1,
@@ -73,9 +73,21 @@ function OverView() {
                 console.log(e.articles)
             //    e.articles = JSON.parse(e.articles)
             }
-            console.log(d);
             setEntries(d) 
         })
+        const intervalId = setInterval(()=>{
+            get("/budget/expense-entries/").
+            then(r => {
+                let d = r.data
+                for (let index = 0; index < d.length; index++) {
+                    let e = d[index];
+                    e.committee = e.committee.name
+                }
+                setEntries(d) 
+            })
+        }, 5000)
+        
+        return () => clearInterval(intervalId); 
     }, [])
 
     

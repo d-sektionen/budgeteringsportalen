@@ -21,7 +21,6 @@ const request = config => {
   const headers = { ...oldHeaders, Authorization: `Bearer ${token}` }
 
   // Send request using axios library
-  console.log({config, headers, url})
   return axios({ ...config, headers, url })
 }
 

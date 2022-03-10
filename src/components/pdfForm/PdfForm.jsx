@@ -14,6 +14,8 @@ const PdfForm = ({ data = {} }) => {
   const handlePrint = useReactToPrint({
     content: () => ref.current,
   });
+
+
   const handleAttest = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
 
@@ -26,13 +28,34 @@ const PdfForm = ({ data = {} }) => {
       console.log(res)
     )
     console.log(data.id)
-
   };
   const handleBooked = () => {
-    console.log("Bokfört");
+    const url = `/budget/expense-entries/${data.id}/approve/`
+
+    let formData = new FormData()
+    formData.append("approvedKas", true)
+    formData.append("approvedDeg", true)
+    formData.append("user_id", 1)
+    put(url, formData).then((res) =>
+      console.log(res)
+    ).catch((res) =>
+      console.log(res)
+    )
+    console.log(data.id)
   };
   const handlePayed = () => {
-    console.log("Betalat");
+    const url = `/budget/expense-entries/${data.id}/approve/`
+    let formData = new FormData()
+    formData.append("approvedKas", true)
+    formData.append("approvedDeg", true)
+    formData.append("payed", true)
+    formData.append("user_id", 1)
+    put(url, formData).then((res) =>
+      console.log(res)
+    ).catch((res) =>
+      console.log(res)
+    )
+    console.log(data.id)
   };
   const handleDenied = () => {
     console.log("neka");
