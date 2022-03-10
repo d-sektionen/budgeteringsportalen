@@ -6,7 +6,7 @@ import { FaCheckCircle, FaBook, FaDollarSign } from "react-icons/fa"
 
 import "./listItem.scss";
 
-function ListItem({ doc }) {
+function ListItem({ doc, updateOverview}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isStaff, setIsStaff] = useState(true);
 
@@ -37,7 +37,7 @@ function ListItem({ doc }) {
       >
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <FiX onClick={closeModal} className="exitButton" />
-          <PdfComponent data={doc} />
+          <PdfComponent data={doc} updateOverview={updateOverview} />
         </div>
 
       </Modal>

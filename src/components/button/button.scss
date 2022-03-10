@@ -1,6 +1,7 @@
 @import "../../constants/vars";
 
 .button {
+  display: block;
   margin-top: $base-padding;
   padding: $base-padding;
   margin-bottom: $base-padding;
@@ -19,6 +20,10 @@
   -moz-transition: 500ms linear;
   -o-transition: 500ms linear;
   transition: 500ms linear;
+
+  .button-text {
+    color: white;
+  }
 }
 
 .button:hover {

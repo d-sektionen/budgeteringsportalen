@@ -16,12 +16,15 @@ function Button({ link, onClick, href, children, title }) {
     )
   );
   */
+
   return href ? (
-    ( <div className="button">
-      <a className="button-text" href={href}> Logga in med LiU-ID </a>
-      </div>) 
-      ) : (<div className="button" onClick={() => onClick()}> 
-      <p className="button-text">{title}</p>
-      </div>)
+    <a className="button" href={href}>
+      <span className="button-text"> Logga in med LiU-ID </span>
+    </a>
+  ) : (
+    <div className="button" onClick={() => onClick()}>
+      <span className="button-text">{title}</span>
+    </div>
+  )
 }
 export default Button;

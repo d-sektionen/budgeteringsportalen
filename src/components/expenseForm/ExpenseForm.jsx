@@ -11,12 +11,12 @@ import SelectBox from "../boxes/selectBox/selectBox";
 import Title from "../title";
 import LeftTextBox from "../boxes/leftTextBox/lefttextbox";
 import FileInput from "../fileInput/fileInput";
-//import axios from 'axios'
+
 
 
 import "./expenseForm.scss";
 import "../button/button.scss";
-import axios from "axios";
+
 import { post } from "../../utility/request";
 
 const requiredField = "Du måste fylla i detta fält!";
@@ -50,49 +50,9 @@ const UtlaggSchema = Yup.object().shape({
     return true;}),
 });
 
-const submitFunction = async (values, {resetForm}) => {
-  //console.log(JSON.stringify(values, null, 2));
-  console.log(values);
-  
-  let formData = new FormData()
-  let file = values.fileinput
-
-  formData.append("file", file)
-  formData.append("document", JSON.stringify(values))
-  formData.append("name", values.name)
-  formData.append("bankName", values.bankName)
-  formData.append("bankNr", values.accountNumber)
-  formData.append("clearingNr", values.clearingNumber)
-  formData.append("location", values.city)
-  formData.append("articles", JSON.stringify(values.priceBoxes))
-  formData.append("description", values.description)
-  formData.append("committee_id", values.utskott + 1)
-  
-  formData.append("date",new Date().toISOString())
-
-  const token = window.localStorage.getItem('token')
-  //const config = {Authorization: `Bearer ${token}`,'Content-Type': 'application/x-www-form-urlencoded' }
-  const config = {'Content-Type': 'application/x-www-form-urlencoded' }
-  
-  post('/budget/expense-entries/', formData, config)
-  .then(function (response) {
-    console.log(response.status);
-    if(response.status === 201){
-      resetForm()
-      alert("Success")
-    }
-  })
-  .catch(function (response) {
-      console.log(response);
-  });
-
-  
-};
-
-
-
 const ExpenseForm = ({ onClickSubmit }) => {
-  const [date, setDate] = useState();
+  const [ date, setDate ] = useState();
+  const [ files, setFiles ] = useState([]);
   const { user, authFinished } = useAuthContext();
 
   const textContentBank = [
@@ -138,6 +98,58 @@ const ExpenseForm = ({ onClickSubmit }) => {
     const d = new Date();
     setDate(d.toDateString());
   }, [date]);
+
+  const submitFunction = async (values, {resetForm}) => {
+    //console.log(JSON.stringify(values, null, 2));
+    console.log(values);
+    
+    let formData = new FormData()
+
+    const readFileAsync = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          resolve(e.target.result)
+        }
+        reader.onerror = reject;
+        reader.readAsDataURL(file)
+      })
+    }
+
+    for (let i = 0; i < files.length; i++) {
+      const fileData = await readFileAsync(files[i])
+      formData.append("files[]", fileData)
+    }
+    
+    formData.append("document", JSON.stringify(values))
+    formData.append("name", values.name)
+    formData.append("bankName", values.bankName)
+    formData.append("bankNr", values.accountNumber)
+    formData.append("clearingNr", values.clearingNumber)
+    formData.append("location", values.city)
+    formData.append("articles", JSON.stringify(values.priceBoxes))
+    formData.append("description", values.description)
+    formData.append("committee_id", parseInt(values.utskott) + 1)
+    
+    formData.append("date",new Date().toISOString())
+  
+    const token = window.localStorage.getItem('token')
+    //const config = {Authorization: `Bearer ${token}`,'Content-Type': 'application/x-www-form-urlencoded' }
+    const config = {'Content-Type': 'application/x-www-form-urlencoded' }
+    
+    post('/budget/expense-entries/', formData, config)
+    .then(function (response) {
+      console.log(response.status);
+      if(response.status === 201){
+        //resetForm()
+        //alert("Success")
+      }
+    })
+    .catch(function (response) {
+        console.log(response);
+    });
+  };
+  
 
   return (
     <>
@@ -251,8 +263,16 @@ const ExpenseForm = ({ onClickSubmit }) => {
                 <FileInput
                   name="fileinput"
                   error={errors.fileinput}
-                  handleChange={handleChange}
+                  /* handleChange={(event) => {
+                    setFieldValue("file", event.currentTarget.files[0]);
+                    console.log(event)
+                  }} */
+                  //handleChange={handleChange}
                   //handleChange={onChange}
+                  handleChange={(e) => {
+                    handleChange(e)
+                    setFiles(e.target.files)
+                  }}
                   id="fileinput"
                 />
                 <div className="textboxRow">

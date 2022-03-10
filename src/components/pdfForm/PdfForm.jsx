@@ -8,13 +8,19 @@ import SpecBox from "./pdfComponents/specBox/specbox.jsx";
 
 import "./pdfForm.scss";
 
-const PdfForm = ({ data = {} }) => {
+const PdfForm = ({ data = {}, updateOverview }) => {
   const ref = useRef();
 
   const handlePrint = useReactToPrint({
     content: () => ref.current,
   });
 
+  
+  const callUpdate = () => {
+    setTimeout(()=>{
+      updateOverview()
+    }, 500)
+  }
 
   const handleAttest = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
@@ -28,6 +34,7 @@ const PdfForm = ({ data = {} }) => {
       console.log(res)
     )
     console.log(data.id)
+    callUpdate()
   };
   const handleBooked = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
@@ -42,6 +49,7 @@ const PdfForm = ({ data = {} }) => {
       console.log(res)
     )
     console.log(data.id)
+    callUpdate()
   };
   const handlePayed = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
@@ -56,10 +64,13 @@ const PdfForm = ({ data = {} }) => {
       console.log(res)
     )
     console.log(data.id)
+    callUpdate()
   };
   const handleDenied = () => {
     console.log("neka");
     let data = prompt("Anledning", "");
+
+    callUpdate()
   };
 
   const userValues = [

@@ -1,7 +1,6 @@
 import ListItem from '../../components/listItem/ListItem';
 import {get, post} from "../../utility/request";
 
-
 import './overview.scss';
 import '../mainPage/mainpage.scss'
 import { useEffect,useState } from 'react';
@@ -9,11 +8,6 @@ import { useEffect,useState } from 'react';
 
 function OverView() {
     const [entries, setEntries] = useState([])
-    const params = new URLSearchParams(document.location.search);
-    const utlaggID = params.get("utlaggid");
-    //console.log(utlaggID);  
-
-    
 
     const tempUser = {
         id: 1,
@@ -57,48 +51,37 @@ function OverView() {
         total_sum: 123123.0,
         signed: true,
     }
-    /* for (let i = 0; i < 12; i++) {
-        entries.push(tempUser);
-    } */
 
-    useEffect(()=>{
+    //const updateOverview = 0
+     
+    const updateOverview = () => {
         get("/budget/expense-entries/").
         then(r => {
-            //console.log(JSON.parse('{"specification": "specs", "count": 10, "price": 29.99}'))
             let d = r.data
-            console.log(d)
+
             for (let index = 0; index < d.length; index++) {
                 let e = d[index];
                 e.committee = e.committee.name
-                console.log(e.articles)
-            //    e.articles = JSON.parse(e.articles)
             }
-            setEntries(d) 
+            setEntries(d)
         })
-        const intervalId = setInterval(()=>{
-            get("/budget/expense-entries/").
-            then(r => {
-                let d = r.data
-                for (let index = 0; index < d.length; index++) {
-                    let e = d[index];
-                    e.committee = e.committee.name
-                }
-                setEntries(d) 
-            })
-        }, 5000)
+    } 
+    
+    useEffect(()=>{
+        updateOverview()
+        const intervalId = setInterval(()=> {
+           updateOverview()
+        }, 20000)
         
         return () => clearInterval(intervalId); 
     }, [])
-
-    
-    
 
     return (
         <>
             <div id='overView' className="container">
                 <h2>Översikt</h2>
                 <div id='overViewList'>
-                    {entries && entries.map((e, i) => (<ListItem doc={e} key={i}/>))}
+                    {entries && entries.map((e, i) => (<ListItem doc={e} key={i} updateOverview={updateOverview}/>))}
                 </div>
             </div>
         </>

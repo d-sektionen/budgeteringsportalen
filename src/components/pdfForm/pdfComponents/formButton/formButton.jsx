@@ -4,9 +4,9 @@ import useAuthContext from '../../../../hooks/useAuthContext'
 
 import './formButton.scss'
 
-const Button = ({handleClick, children}) => {
+const Button = ({handleClick, children, title}) => {
   return (
-    <div className="roundButton" onClick={handleClick}>
+    <div title={title} className="roundButton" onClick={handleClick}>
       {children}
     </div>
   )
@@ -32,11 +32,11 @@ function FormButton({
 
   return (
     <div className="formButton">
-      {print && <Button handleClick={handlePrint}><FaPrint /></Button>}
-      {attest && canEdit && <Button handleClick={handleAttest}><FaCheckCircle /></Button>}
-      {book && canEdit && <Button handleClick={handleBooked}><FaBook /></Button>}
-      {payed && canEdit && <Button handleClick={handlePayed}><FaDollarSign /></Button>}
-      {deny && canEdit && <Button handleClick={handleDenied}><FaTimes /></Button>}
+      {print && <Button title="Skriv ut" handleClick={handlePrint}><FaPrint /></Button>}
+      {deny && canEdit && <Button title="Avfärda" handleClick={handleDenied}><FaTimes /></Button>}
+      {attest && canEdit && <Button title="Attestera" handleClick={handleAttest}><FaCheckCircle /></Button>}
+      {book && canEdit && <Button title="Bokför" handleClick={handleBooked}><FaBook /></Button>}
+      {payed && canEdit && <Button title="Betala" handleClick={handlePayed}><FaDollarSign /></Button>}
     </div>
   );
 }
