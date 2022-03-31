@@ -1,6 +1,5 @@
 @import '../../../../constants/vars';
 
-
 .formButton {
   width: 30%;
   display: flex;
@@ -16,10 +15,15 @@
     margin: auto;
     border-radius: 3em;
     cursor: pointer;
+
   }
 
   .roundButton:hover {
     filter: brightness(85%);
+  }
+
+  .active {
+    background-color: green;
   }
 
 

@@ -1,5 +1,4 @@
 import { Field } from 'formik';
-
 import './multilinebox.scss';
 import '../textBox/textbox';
 
@@ -19,6 +18,6 @@ function MultilineBox({ title, placeholder, name, error, isFormik = true }) {
 			</div>
 		</>
 	);
-}
+};
 
 export default MultilineBox;

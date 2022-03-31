@@ -6,7 +6,7 @@ import { FaCheckCircle, FaBook, FaDollarSign } from "react-icons/fa"
 
 import "./listItem.scss";
 
-function ListItem({ doc, updateOverview}) {
+function ListItem({ doc, updateOverview }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isStaff, setIsStaff] = useState(true);
 
@@ -30,10 +30,10 @@ function ListItem({ doc, updateOverview}) {
       <Modal
         isOpen={isOpen}
         /* onAfterOpen={afterOpenModal}
-				onRequestClose={closeModal} */
+        onRequestClose={closeModal} */
         contentLabel="Item"
         style={customStyles}
-        
+
       >
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <FiX onClick={closeModal} className="exitButton" />
@@ -42,23 +42,23 @@ function ListItem({ doc, updateOverview}) {
 
       </Modal>
       <div className="listItem" onClick={openModal}>
-        <p>Utlägg av {doc.user.username + " " + doc.date.substring(0,10)}</p>
+        <p>Utlägg av {doc.user.username + " " + doc.date.substring(0, 10)}</p>
 
         {isStaff &&
-        (<div>
-          <button className={`${doc.approvedKas ? "approved" : "disabled"}`}>
-            Attesterat
-            <FaCheckCircle />
-          </button>
-          <button className={`${doc.approvedDeg ? "approved" : "disabled"}`}>
-            Bokfört
-            <FaBook />
-          </button>
-          <button className={`${doc.payed ? "approved" : "disabled"}`}>
-            Betalt
-            <FaDollarSign />
-          </button>
-        </div>)
+          (<div>
+            <button className={`${doc.approvedKas ? "approved" : "disabled"}`}>
+              Attesterat
+              <FaCheckCircle />
+            </button>
+            <button className={`${doc.approvedDeg ? "approved" : "disabled"}`}>
+              Bokfört
+              <FaBook />
+            </button>
+            <button className={`${doc.payed ? "approved" : "disabled"}`}>
+              Betalt
+              <FaDollarSign />
+            </button>
+          </div>)
         }
       </div>
     </>

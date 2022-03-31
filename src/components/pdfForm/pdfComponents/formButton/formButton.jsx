@@ -4,14 +4,13 @@ import useAuthContext from '../../../../hooks/useAuthContext'
 
 import './formButton.scss'
 
-const Button = ({handleClick, children, title}) => {
+const Button = ({ handleClick, children, title, active = false }) => {
   return (
-    <div title={title} className="roundButton" onClick={handleClick}>
+    <div title={title} className={`roundButton ${active ? 'active' : ''}`} onClick={handleClick}>
       {children}
     </div>
   )
 }
-
 
 function FormButton({
   print,
@@ -24,7 +23,9 @@ function FormButton({
   handleBooked,
   handleAttest,
   handleDenied,
+  status
 }) {
+  console.log(status)
   const { user, authFinished } = useAuthContext();
   console.log(user)
 
@@ -34,13 +35,11 @@ function FormButton({
     <div className="formButton">
       {print && <Button title="Skriv ut" handleClick={handlePrint}><FaPrint /></Button>}
       {deny && canEdit && <Button title="Avfärda" handleClick={handleDenied}><FaTimes /></Button>}
-      {attest && canEdit && <Button title="Attestera" handleClick={handleAttest}><FaCheckCircle /></Button>}
-      {book && canEdit && <Button title="Bokför" handleClick={handleBooked}><FaBook /></Button>}
-      {payed && canEdit && <Button title="Betala" handleClick={handlePayed}><FaDollarSign /></Button>}
+      {attest && canEdit && <Button title="Attestera" handleClick={handleAttest} active={status.confirmed}><FaCheckCircle /></Button>}
+      {book && canEdit && <Button title="Bokför" handleClick={handleBooked} active={status.booked} ><FaBook /></Button>}
+      {payed && canEdit && <Button title="Betala" handleClick={handlePayed} active={status.payed}><FaDollarSign /></Button>}
     </div>
   );
 }
-
-
 
 export default FormButton;

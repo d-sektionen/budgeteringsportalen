@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+	import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './selectBox.scss';
 
@@ -51,9 +51,6 @@ const SelectBox = ({ name, value, handleChange, error }) => {
 	useEffect(()=>{
 		setCommittees(getCommittes())
 	}, [])
-
-
-
 
 	return (
 		<div className={`margin-0 inputTextBox ${error ? 'error' : ''}`}>

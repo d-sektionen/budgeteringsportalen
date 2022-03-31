@@ -1,87 +1,73 @@
 import ListItem from '../../components/listItem/ListItem';
-import {get, post} from "../../utility/request";
+import { get, post } from "../../utility/request";
+import SelectBox from "../../components/boxes/selectBox/selectBox";
 
 import './overview.scss';
 import '../mainPage/mainpage.scss'
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function OverView() {
     const [entries, setEntries] = useState([])
+    const [user, setUser] = useState({})
 
-    const tempUser = {
-        id: 1,
-        date: "2021-11-26T19:23:00+01:00",
-        user: {
-            id: 1,
-            username: "felli675",
-            first_name: "Felix",
-            last_name: "Lindgren",
-            pretty_name: "Felix Lindgren"
-        },
-        name: "felix",
-        articles: [
-            {
-              spec: "Kakor",
-              amount: 4,
-              price: 5,
-            },
-            {
-              spec: "dawodpamd dankwdnandk dwdajnwdnawdno dawoindnkj dahwiudwkdawdwjwadnjakwdwdwdk",
-              amount: 10000,
-              price: 5,
-            },
-            {
-              spec: "Många kakor",
-              amount: 23131,
-              price: 321,
-            },
-          ],
-        description: "Detta är en beskriving av köpet som gjorts",
-        confirmed: false,
-        clearingNr: "123",
-        bankNr: "546",
-        bankName: "Bank",
-        location: "Linköping",
-        committee: "1",
-        approvedKas: false,
-        approvedDeg: true,
-        payed: false,
-        ipaddr: "127.0.0.1",
-        total_sum: 123123.0,
-        signed: true,
-    }
-
-    //const updateOverview = 0
-     
     const updateOverview = () => {
         get("/budget/expense-entries/").
-        then(r => {
-            let d = r.data
+            then(r => {
+                let d = r.data
 
-            for (let index = 0; index < d.length; index++) {
-                let e = d[index];
-                e.committee = e.committee.name
-            }
-            setEntries(d)
-        })
-    } 
-    
-    useEffect(()=>{
+                for (let index = 0; index < d.length; index++) {
+                    let e = d[index];
+                    e.committee = e.committee.name
+                }
+                setEntries(d)
+            })
+    }
+
+    const getUser = () => {
+        get("/account/me").
+            then(r => {
+                setUser(r)
+            })
+    }
+
+    useEffect(() => {
         updateOverview()
-        const intervalId = setInterval(()=> {
-           updateOverview()
+        const intervalId = setInterval(() => {
+            updateOverview()
         }, 20000)
-        
-        return () => clearInterval(intervalId); 
+
+        getUser()
+
+        return () => clearInterval(intervalId);
+
     }, [])
 
     return (
         <>
             <div id='overView' className="container">
                 <h2>Översikt</h2>
+                <div>
+                    <p>Antal utlägg: {entries.length}</p>
+                    <div>
+                        <input type="checkbox" id="Attesterade" name="attesterade"
+                            checked></input>
+                        <label for="attesterade">Attesterade</label>
+
+                        <input type="checkbox" id="Bokförda" name="Bokförda"
+                            checked></input>
+                        <label for="Bokförda">Bokförda</label>
+
+                        <input type="checkbox" id="Betalade" name="Betalade"
+                            checked></input>
+                        <label for="Betalade">Betalade</label>
+                    </div>
+
+                    <SelectBox></SelectBox>
+                </div>
+
                 <div id='overViewList'>
-                    {entries && entries.map((e, i) => (<ListItem doc={e} key={i} updateOverview={updateOverview}/>))}
+                    {entries && entries.map((e, i) => (<ListItem doc={e} key={i} updateOverview={updateOverview} />))}
                 </div>
             </div>
         </>

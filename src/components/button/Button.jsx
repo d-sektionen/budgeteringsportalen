@@ -1,5 +1,4 @@
 //import { Link } from "react-router-dom";
-
 import "./button.scss";
 
 function Button({ link, onClick, href, children, title }) {
@@ -26,5 +25,6 @@ function Button({ link, onClick, href, children, title }) {
       <span className="button-text">{title}</span>
     </div>
   )
-}
+};
+
 export default Button;

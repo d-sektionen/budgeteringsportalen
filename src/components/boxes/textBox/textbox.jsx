@@ -7,6 +7,6 @@ function TextBox({ title, temp }) {
             <input type="text" className="t-temp" placeholder={temp}/>
         </div>
     </>
-}
+};
 
 export default TextBox;

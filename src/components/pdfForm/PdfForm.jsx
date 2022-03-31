@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import FormButton from "./pdfComponents/formButton/formButton.jsx";
 import rectLogo from "../../images/Color_white.svg";
-import {put} from "../../utility/request"
+import { put } from "../../utility/request"
 
 import SpecBox from "./pdfComponents/specBox/specbox.jsx";
 
@@ -15,9 +15,9 @@ const PdfForm = ({ data = {}, updateOverview }) => {
     content: () => ref.current,
   });
 
-  
+
   const callUpdate = () => {
-    setTimeout(()=>{
+    setTimeout(() => {
       updateOverview()
     }, 500)
   }
@@ -70,6 +70,8 @@ const PdfForm = ({ data = {}, updateOverview }) => {
     console.log("neka");
     let data = prompt("Anledning", "");
 
+    // TODO: implement
+
     callUpdate()
   };
 
@@ -81,21 +83,20 @@ const PdfForm = ({ data = {}, updateOverview }) => {
     data.date,
   ];
   const bankValues = [data.clearingNr, data.bankNr, data.bankName];
-  
   return (
-    <div style={{margin: 'auto'}}>
+    <div style={{ margin: 'auto' }}>
       <div className="form-container" ref={ref}>
-      <div className="rect-img-wrapper">
-        <img src={rectLogo} alt="d-sektionen logo"/>
-      </div>
+        <div className="rect-img-wrapper">
+          <img src={rectLogo} alt="d-sektionen logo" />
+        </div>
         <SpecBox values={data.articles} />
+
         <div>
           <div>
             <p className="descr-title descr-text">Ändamål med inköpet</p>
-          </div>
-          <div>
             <p className="descr-text">{data.description}</p>
           </div>
+
         </div>
         <div className="infoContainer">
           <p className="t-info-title">Kontouppgifter för överföring</p>
@@ -132,7 +133,10 @@ const PdfForm = ({ data = {}, updateOverview }) => {
           </p>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'end', width: '80%', margin: 'auto', padding: '16px'}}>
+      <div style={{ marginLeft: '10%' }}>
+        {data.receipts.map((receipt, n) => <a className="descr-text" href={receipt.file} target="_blank" rel="noopener noreferrer">{`Underlag ${n + 1}`}</a>)}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'end', width: '80%', margin: 'auto', padding: '16px' }}>
         <FormButton
           print
           attest
@@ -144,8 +148,13 @@ const PdfForm = ({ data = {}, updateOverview }) => {
           handleBooked={handleBooked}
           handleAttest={handleAttest}
           handleDenied={handleDenied}
+          status={{
+            confirmed: data.confirmed,
+            booked: data.approvedDeg,
+            payed: data.payed
+          }}
         />
-        </div>
+      </div>
     </div>
   );
 };
