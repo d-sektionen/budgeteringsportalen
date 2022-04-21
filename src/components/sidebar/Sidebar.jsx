@@ -22,8 +22,8 @@ const Sidebar = () => {
   const [isOpen, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const escFunction = (event) => {
-    if (event.keyCode === 27) setOpen(false);
+  const escFunction = e => {
+    if (e.keyCode === 27) setOpen(false);
   };
 
   useEffect(() => {
@@ -45,16 +45,16 @@ const Sidebar = () => {
             </a>
           </div>
           <ul>
-            {entries.map((entry) => (
-              <li key={entry.title}>
+            {entries.map(e => (
+              <li key={e.title}>
                 <p
                   onClick={() => {
                     setOpen(false);
-                    navigate(entry.link);
+                    navigate(e.link);
                   }}
                   className="menuItem"
                 >
-                  {entry.title}
+                  {e.title}
                 </p>
               </li>
             ))}

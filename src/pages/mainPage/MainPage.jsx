@@ -6,7 +6,7 @@ import ExpenseForm from "../../components/expenseForm/ExpenseForm.jsx";
 
 import "./mainpage.scss";
 
-function MainPage() {
+const MainPage=()=> {
   const { login } = useLogin()
   const { user, authFinished } = useAuthContext();
 

@@ -15,64 +15,85 @@ const PdfForm = ({ data = {}, updateOverview }) => {
     content: () => ref.current,
   });
 
-
-  const callUpdate = () => {
-    setTimeout(() => {
-      updateOverview()
-    }, 500)
-  }
-
   const handleAttest = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
 
-    let formData = new FormData()
+    const formData = new FormData()
     formData.append("approvedKas", true)
     formData.append("user_id", 1)
-    put(url, formData).then((res) =>
-      console.log(res)
-    ).catch((res) =>
+    put(url, formData).then(res =>{
+      updateOverview()
+    }).catch(res =>
       console.log(res)
     )
     console.log(data.id)
-    callUpdate()
   };
   const handleBooked = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
-
-    let formData = new FormData()
+    const verifNumber = (!data.denied && prompt("Verifikationsnummer", ""));
+    if (!verifNumber || verifNumber === "") return;
+    const formData = new FormData()
     formData.append("approvedKas", true)
     formData.append("approvedDeg", true)
     formData.append("user_id", 1)
-    put(url, formData).then((res) =>
+    put(url, formData).then(res => {
       console.log(res)
-    ).catch((res) =>
+
+      const comment_url = `/budget/expense-entries/${data.id}/comment/`
+      const commentFormData = new FormData()
+      commentFormData.append("comment", ""+verifNumber)
+      commentFormData.append("user_id", 1)
+      put(comment_url, commentFormData).then(res =>{
+        updateOverview()
+      }
+      ).catch(commentErr => console.log(commentErr))
+        
+    }
+    ).catch(res =>
       console.log(res)
     )
-    console.log(data.id)
-    callUpdate()
+
   };
   const handlePayed = () => {
     const url = `/budget/expense-entries/${data.id}/approve/`
-    let formData = new FormData()
+    const formData = new FormData()
     formData.append("approvedKas", true)
     formData.append("approvedDeg", true)
     formData.append("payed", true)
     formData.append("user_id", 1)
-    put(url, formData).then((res) =>
-      console.log(res)
-    ).catch((res) =>
+    put(url, formData).then(res =>
+      updateOverview()
+    ).catch(res =>
       console.log(res)
     )
-    console.log(data.id)
-    callUpdate()
+
+
   };
   const handleDenied = () => {
     console.log("neka");
-    let data = prompt("Anledning", "");
-
+    const comment = prompt("Anledning", "");
+    console.log(comment);
+    if (!comment || comment === "") return;
+    const url = `/budget/expense-entries/${data.id}/approve/`
+    const formData = new FormData()
     // TODO: implement
+    formData.append("denied", true)
+    formData.append("user_id", 1)
+    put(url, formData).then(denyRes => {
+      console.log(denyRes)
 
-    callUpdate()
+      const comment_url = `/budget/expense-entries/${data.id}/comment/`
+      const commentformData = new FormData()
+      commentformData.append("user_id", 1)
+      commentformData.append("comment", comment)
+      put(comment_url, commentformData).then(commentRes =>
+        updateOverview()
+      ).catch(commmentErr =>
+        console.log(commmentErr)
+      )
+    })
+    .catch(denyErr => console.log(denyErr))
+
   };
 
   const userValues = [
@@ -136,6 +157,11 @@ const PdfForm = ({ data = {}, updateOverview }) => {
       <div style={{ marginLeft: '10%' }}>
         {data.receipts.map((receipt, n) => <a className="descr-text" href={receipt.file} target="_blank" rel="noopener noreferrer">{`Underlag ${n + 1}`}</a>)}
       </div>
+      {data.comment && <div style={{ marginLeft: '10%' }}>
+        <p>Kommentarer:</p>
+        {data.comment}
+      </div>}
+      
       <div style={{ display: 'flex', justifyContent: 'end', width: '80%', margin: 'auto', padding: '16px' }}>
         <FormButton
           print
@@ -149,7 +175,8 @@ const PdfForm = ({ data = {}, updateOverview }) => {
           handleAttest={handleAttest}
           handleDenied={handleDenied}
           status={{
-            confirmed: data.confirmed,
+            denied: data.denied,
+            approvedKas: data.approvedKas,
             booked: data.approvedDeg,
             payed: data.payed
           }}

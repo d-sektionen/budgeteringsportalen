@@ -9,7 +9,7 @@ import axios from 'axios'
 const request = config => {
   // if config.endpoint is not a full path with the "https://" or "http://"
   // prefix the BASE_URL is prepended to the endpoint
-  let BASE_URL = "http://localhost:8000"
+  const BASE_URL = "http://localhost:8000"
   const isFullUrl = /^https?:\/\//
   const url = isFullUrl.test(config.endpoint)
     ? config.endpoint

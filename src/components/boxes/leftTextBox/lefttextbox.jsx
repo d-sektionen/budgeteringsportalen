@@ -2,9 +2,9 @@ import { Field } from 'formik';
 import { useState } from "react";
 import './lefttextbox.scss';
 
-const LeftTextBox = ({ title, temp, name, id, error, touched, isFormik = true }) => {
+const LeftTextBox = ({ title, temp, name, id, error, isFormik = true }) => {
 	const [fieldClass, setFieldClass] = useState("untouched");
-	const [prevVal, setPrevVal] = useState("INIT_VALUE");
+	const prevVal = "INIT_VALUE"
 	const checkChange = e => {
 		if(prevVal != e.target.value){
 			setFieldClass("touched");
@@ -20,7 +20,6 @@ const LeftTextBox = ({ title, temp, name, id, error, touched, isFormik = true })
 					name={name}
 					type='text'
 					placeholder={temp}
-					//className={`${!touched ? 'untouched' : 'touched'}`}
 					className={fieldClass}
 					onKeyPress={checkChange}
 				/>

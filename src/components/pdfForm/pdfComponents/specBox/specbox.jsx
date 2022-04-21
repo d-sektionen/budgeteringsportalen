@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import "./specbox.scss";
 
-function SpecBox({ values }) {
+const SpecBox=({ values })=> {
   const [total, setTotal] = useState(0);
 
   const calcTotal = () => {
     let total = 0;
-    values.forEach((val) => {
+    values.forEach(val => {
       total += val.amount * val.price;
     });
     return total;
@@ -59,13 +59,6 @@ function SpecBox({ values }) {
             <p>{total}</p>
           </div>
         </div>
-        {/*
-            <div className="total srow">
-                <div className="scol large empty"/>
-                <div className="stitle scol"><p>Total</p></div>
-                <div className="scol"><p>{total}</p></div>  
-            </div>
-            */}
       </div>
     </>
   );

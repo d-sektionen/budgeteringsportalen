@@ -6,7 +6,7 @@ import { FaCheckCircle, FaBook, FaDollarSign } from "react-icons/fa"
 
 import "./listItem.scss";
 
-function ListItem({ doc, updateOverview }) {
+const ListItem = ({ doc, updateOverview }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isStaff, setIsStaff] = useState(true);
 
@@ -16,6 +16,8 @@ function ListItem({ doc, updateOverview }) {
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  //Modal.setAppElement(el)
 
   const customStyles = {
     content: {
@@ -46,18 +48,21 @@ function ListItem({ doc, updateOverview }) {
 
         {isStaff &&
           (<div>
-            <button className={`${doc.approvedKas ? "approved" : "disabled"}`}>
-              Attesterat
+            <label className={`statusLabel ${doc.approvedKas ? "approved" : "disabled"}`}>
+              Attesterat 
+              {" "}
               <FaCheckCircle />
-            </button>
-            <button className={`${doc.approvedDeg ? "approved" : "disabled"}`}>
+            </label>
+            <label className={`statusLabel ${doc.approvedDeg ? "approved" : "disabled"}`}>
               Bokfört
+              {" "}
               <FaBook />
-            </button>
-            <button className={`${doc.payed ? "approved" : "disabled"}`}>
-              Betalt
+            </label>
+            <label className={`statusLabel ${doc.payed ? "approved" : "disabled"}`}>
+              Betalt 
+              {" "}
               <FaDollarSign />
-            </button>
+            </label>
           </div>)
         }
       </div>

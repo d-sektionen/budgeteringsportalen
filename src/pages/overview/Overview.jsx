@@ -7,18 +7,16 @@ import '../mainPage/mainpage.scss'
 import { useEffect, useState } from 'react';
 
 
-function OverView() {
+const OverView = () => {
     const [entries, setEntries] = useState([])
     const [user, setUser] = useState({})
 
     const updateOverview = () => {
         get("/budget/expense-entries/").
             then(r => {
-                let d = r.data
-
-                for (let index = 0; index < d.length; index++) {
-                    let e = d[index];
-                    e.committee = e.committee.name
+                const d = r.data;
+                for (const e of d) {
+                    e.committee = e.committee.name;
                 }
                 setEntries(d)
             })
@@ -52,18 +50,16 @@ function OverView() {
                     <div>
                         <input type="checkbox" id="Attesterade" name="attesterade"
                             checked></input>
-                        <label for="attesterade">Attesterade</label>
+                        <label htmlFor="attesterade">Attesterade</label>
 
                         <input type="checkbox" id="Bokförda" name="Bokförda"
                             checked></input>
-                        <label for="Bokförda">Bokförda</label>
+                        <label htmlFor="Bokförda">Bokförda</label>
 
                         <input type="checkbox" id="Betalade" name="Betalade"
                             checked></input>
-                        <label for="Betalade">Betalade</label>
+                        <label htmlFor="Betalade">Betalade</label>
                     </div>
-
-                    <SelectBox></SelectBox>
                 </div>
 
                 <div id='overViewList'>

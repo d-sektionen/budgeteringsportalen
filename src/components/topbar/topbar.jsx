@@ -1,6 +1,4 @@
 import './topbar.scss';
-
-//import { FiUser } from 'react-icons/fi';
 import Sidebar from '../sidebar/Sidebar';
 
 const TopBar = () => {

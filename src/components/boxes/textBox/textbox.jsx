@@ -1,6 +1,6 @@
 import './textbox.scss';
 
-function TextBox({ title, temp }) {
+const TextBox=({ title, temp }) => {
     return <>
         <div className="inputTextBox">
             <p className="t-title">{title}</p>

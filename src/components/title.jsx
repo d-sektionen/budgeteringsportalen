@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Title({ titleText }) {
+const Title=({ titleText }) =>{
     const [textboxTitle] = useState(titleText);
     return <>
         <div className="textBoxTitle">

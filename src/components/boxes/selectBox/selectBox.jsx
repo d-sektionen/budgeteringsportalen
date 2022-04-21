@@ -1,4 +1,4 @@
-	import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import './selectBox.scss';
 
@@ -29,15 +29,15 @@ const getCommittes = () =>{
 		url: url,
 		headers: headers,
 	})
-	.then(function (response) {
-		console.log(response.data);
+	.then(res=> {
+		console.log(res.data);
 		
-		response.data.forEach(e => {
+		res.data.forEach(e => {
 			committees.push(e.name)	
 		});
 	})
-	.catch(function (response) {
-		console.log(response.data);
+	.catch(res=> {
+		console.log(res.data);
 	});
 
 	return committees

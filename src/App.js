@@ -5,7 +5,7 @@ import TopBar from "./components/topbar/topbar.jsx";
 import MainPage from "./pages/mainPage/MainPage";
 import OverView from "./pages/overview/Overview.jsx";
 
-function App() {
+const App=()=> {
   return (
     <div className="App">
       <BrowserRouter>

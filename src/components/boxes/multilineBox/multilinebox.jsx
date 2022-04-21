@@ -1,8 +1,7 @@
 import { Field } from 'formik';
 import './multilinebox.scss';
-import '../textBox/textbox';
 
-function MultilineBox({ title, placeholder, name, error, isFormik = true }) {
+const MultilineBox = ({ title, placeholder, name, error, isFormik = true }) => {
 	return (
 		<>
 			<div className={`multilineBox span-2 ${error ? 'error' : ''}`}>

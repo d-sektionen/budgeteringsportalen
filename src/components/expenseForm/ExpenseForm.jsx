@@ -33,17 +33,16 @@ const UtlaggSchema = Yup.object().shape({
   priceBoxes: Yup.array().of(
     Yup.object().shape({
       spec: Yup.string().required(requiredField),
-      price: Yup.number().required(requiredField),
-      amount: Yup.number().required(requiredField),
+      price: Yup.number().positive().required(requiredField),
+      amount: Yup.number().positive().required(requiredField),
     })
   ),
   utskott: Yup.string().required(requiredField),
   fileinput: Yup.array().nullable().test("correct-type", requiredField, () => {
     const files = document.getElementById("fileinput").files;
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].type !== "application/pdf") {
+    for (const f of files) {
+      if (f.type !== "application/pdf")
         return false;
-      }
     }
     return true;
   }),
@@ -99,15 +98,15 @@ const ExpenseForm = ({ }) => {
   }, [date]);
 
   const submitFunction = async (values, { resetForm }) => {
-    //console.log(JSON.stringify(values, null, 2));
+    console.log(JSON.stringify(values, null, 2));
     console.log(values);
 
-    let formData = new FormData()
+    const formData = new FormData()
 
-    const readFileAsync = (file) => {
+    const readFileAsync = file => {
       return new Promise((resolve, reject) => {
         const reader = new FileReader()
-        reader.onload = (e) => {
+        reader.onload = e => {
           resolve(e.target.result)
         }
         reader.onerror = reject;
@@ -115,9 +114,9 @@ const ExpenseForm = ({ }) => {
       })
     }
 
-    for (let i = 0; i < files.length; i++) {
-      const fileData = await readFileAsync(files[i])
-      formData.append("files[]", fileData)
+    for (const f of files) {
+        const fileData = await readFileAsync(f)
+        formData.append("files[]", fileData)
     }
 
     formData.append("document", JSON.stringify(values))
@@ -137,14 +136,14 @@ const ExpenseForm = ({ }) => {
     const config = { 'Content-Type': 'application/x-www-form-urlencoded' }
 
     post('/budget/expense-entries/', formData, config)
-      .then(function (response) {
-        console.log(response.status);
-        if (response.status === 201) {
+      .then(res => {
+        console.log(res.status);
+        if (res.status === 201) {
           //resetForm()
           alert("Success")
         }
       })
-      .catch(function (error) {
+      .catch(error => {
         alert("There was an error")
         if (error.response) {
           console.log(error.response);
@@ -152,13 +151,10 @@ const ExpenseForm = ({ }) => {
           console.log(error.response.status);
           console.log(error.response.headers);
         }
-
       });
   };
   return (
     <>
-      {/*       { !authFinished  && !user.liuid && <Login />}
-      {user && authFinished &&  ( */}
       <>
         <Formik
           initialValues={{
@@ -175,10 +171,7 @@ const ExpenseForm = ({ }) => {
             fileinput: [],
           }}
           validationSchema={UtlaggSchema}
-          onSubmit={submitFunction /*async (values) => {
-              await new Promise((r) => setTimeout(r, 500));
-              alert(JSON.stringify(values, null, 2));
-            } */}
+          onSubmit={submitFunction}
         >
           {({ errors, values, touched, setFieldValue, handleChange }) => (
             <Form className="container" autoComplete="off">
@@ -245,7 +238,6 @@ const ExpenseForm = ({ }) => {
                     name={box.name}
                     id={box.name}
                     error={touched[box.name] && errors[box.name]}
-                    touched={touched[box.name]}
                     key={i}
                   />
                 ))}
@@ -259,14 +251,13 @@ const ExpenseForm = ({ }) => {
                     name={box.name}
                     id={box.name}
                     key={i}
-                    touched={touched[box.name]}
                   />
                 ))}
               </div>
               <FileInput
                 name="fileinput"
                 error={errors.fileinput}
-                handleChange={(e) => {
+                handleChange={e => {
                   handleChange(e)
                   setFiles(e.target.files)
                 }}
@@ -290,7 +281,6 @@ const ExpenseForm = ({ }) => {
           )}
         </Formik>
       </>
-      {/*       )} */}
     </>
   );
 };
