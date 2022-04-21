@@ -6,7 +6,7 @@ const TopBar = () => {
 		<div id='topBar'>
 			<Sidebar />
 			<span>Räkning till d-sektionen</span>
-			<div/>
+			<div />
 		</div>
 	);
 };

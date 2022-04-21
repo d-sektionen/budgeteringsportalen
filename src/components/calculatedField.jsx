@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 const CalculatedField = ({ values, error, title, setFieldValue }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
-
   useEffect(() => {
     var val = 0;
     if (values) {

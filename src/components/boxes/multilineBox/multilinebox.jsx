@@ -6,14 +6,15 @@ const MultilineBox = ({ title, placeholder, name, error, isFormik = true }) => {
 		<>
 			<div className={`multilineBox span-2 ${error ? 'error' : ''}`}>
 				<p className='title'>{title}</p>
-				{isFormik && (<Field
-					name={name}
-					placeholder={placeholder}
-					rows={4}
-					component='textarea'
-				/>)
-				}
-				{!isFormik && (<textarea value={placeholder} readOnly={true} rows={7} />)}
+				{isFormik && (
+					<Field
+						name={name}
+						placeholder={placeholder}
+						rows={4}
+						component='textarea'
+					/>
+				)}
+				{!isFormik && <textarea value={placeholder} readOnly={true} rows={7} />}
 			</div>
 		</>
 	);

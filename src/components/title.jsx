@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Title=({ titleText }) =>{
-    const [textboxTitle] = useState(titleText);
-    return <>
-        <div className="textBoxTitle">
-            <p className="title">{textboxTitle}</p>
-        </div>
-    </>
-}
+const Title = ({ titleText }) => {
+	return (
+		<div className='textBoxTitle'>
+			<p className='title'>{titleText}</p>
+		</div>
+	);
+};
 
 export default Title;

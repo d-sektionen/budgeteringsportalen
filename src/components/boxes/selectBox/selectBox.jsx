@@ -1,56 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import axios from 'axios';
 import './selectBox.scss';
 
-const utskott = [
-	'Alumni',
-	'D-Group',
-	'Donna',
-	'EventU',
-	'InfU',
-	'LINK',
-	'MafU',
-	'NärU',
-	'PubU',
-	'STABEN',
-	'Valberedningen',
-	'WebbU',
-	'Werkmästeriet',
-];
-
-
-const getCommittes = () =>{
-	const url = "http://localhost:8000/committee/all/"
-	const token = window.localStorage.getItem('token')
-  	const headers = {Authorization: `Bearer ${token}`}
-	let committees = []
+const getCommittes = () => {
+	const url = 'http://localhost:8000/committee/all/';
+	const token = window.localStorage.getItem('token');
+	const headers = { Authorization: `Bearer ${token}` };
+	let committees = [];
 	axios({
-		method:'get',
+		method: 'get',
 		url: url,
 		headers: headers,
 	})
-	.then(res=> {
-		console.log(res.data);
-		
-		res.data.forEach(e => {
-			committees.push(e.name)	
+		.then((res) => {
+			console.log(res.data);
+
+			res.data.forEach((e) => {
+				committees.push(e.name);
+			});
+		})
+		.catch((res) => {
+			console.log(res.data);
 		});
-	})
-	.catch(res=> {
-		console.log(res.data);
-	});
 
-	return committees
-}
-
+	return committees;
+};
 
 const SelectBox = ({ name, value, handleChange, error }) => {
+	const [committees, setCommittees] = useState([]);
 
-	const [committees, setCommittees] = useState([])
-
-	useEffect(()=>{
-		setCommittees(getCommittes())
-	}, [])
+	useEffect(() => {
+		setCommittees(getCommittes());
+	}, []);
 
 	return (
 		<div className={`margin-0 inputTextBox ${error ? 'error' : ''}`}>

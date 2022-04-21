@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Field, useFormikContext } from 'formik';
 import './pricebox.scss';
-import '../../../pages/mainPage/MainPage'
+import '../../../pages/mainPage/MainPage';
 
 const PriceBox = ({ i }) => {
 	const {
@@ -27,13 +27,14 @@ const PriceBox = ({ i }) => {
 		<div className='priceBox'>
 			<div
 				id='spec'
-				className={`${touched.priceBoxes &&
+				className={`${
+					touched.priceBoxes &&
 					touched?.priceBoxes[i]?.spec &&
 					!console.log(touched) &&
 					currentBox.spec === ''
-					? 'error'
-					: ''
-					}`}
+						? 'error'
+						: ''
+				}`}
 			>
 				<p>Specifikation</p>
 				<Field
@@ -46,12 +47,13 @@ const PriceBox = ({ i }) => {
 			<div className='container'>
 				<div
 					id='price'
-					className={`${touched.priceBoxes &&
+					className={`${
+						touched.priceBoxes &&
 						touched?.priceBoxes[i]?.price &&
 						!currentBox.price
-						? 'error'
-						: ''
-						}`}
+							? 'error'
+							: ''
+					}`}
 				>
 					<p>Pris</p>
 					<Field
@@ -63,12 +65,13 @@ const PriceBox = ({ i }) => {
 				</div>
 				<div
 					id='amount'
-					className={`${touched.priceBoxes &&
+					className={`${
+						touched.priceBoxes &&
 						touched?.priceBoxes[i]?.amount &&
 						!currentBox.amount
-						? 'error'
-						: ''
-						}`}
+							? 'error'
+							: ''
+					}`}
 				>
 					<p>Antal</p>
 					<Field
