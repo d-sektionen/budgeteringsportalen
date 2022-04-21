@@ -8,6 +8,8 @@
 
 ### Generellt flöde för ett utlägg
 
+**OBS! Vi stödjer inte Internet Explorer**
+
 1. Utlägg registreras och kassör får mejl
 2. Kassör attesterar utlägg och DEG får mejl
 3. DEG bokför och trycker bokför, kassör får mejl
