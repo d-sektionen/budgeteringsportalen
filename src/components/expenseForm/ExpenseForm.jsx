@@ -185,8 +185,9 @@ const ExpenseForm = ({ }) => {
                       ))}
                       {values.priceBoxes.length > 1 && <Button
                         type="button"
-                        onClick={() =>
-                          arrayHelpers.pop()
+                        onClick={() =>{
+                          //touched?.priceBoxes?.pop()
+                          arrayHelpers.pop()}
                         }
                         title={"Ta bort rad"}
                       />}

@@ -4,9 +4,9 @@ import useAuthContext from '../../../../hooks/useAuthContext'
 
 import './formButton.scss'
 
-const Button = ({ handleClick, children, title, active = false }) => {
+const Button = ({ handleClick, children, title, disabled, active = false }) => {
   return (
-    <div title={title} className={`roundButton ${active ? (title=="Avfärda" ? 'red' : 'green') : ''}`} onClick={handleClick}>
+    <div title={title} className={`roundButton ${(active && !disabled) ? (title=="Avfärda" ? 'red' : 'green') : ''}`} onClick={!disabled ? handleClick : null}>
       {children}
     </div>
   )
@@ -35,9 +35,9 @@ const FormButton = ({
     <div className="formButton">
       {print && <Button title="Skriv ut" handleClick={handlePrint}><FaPrint /></Button>}
       {deny && canEdit && <Button title="Avfärda" handleClick={handleDenied} active={status.denied}><FaTimes /></Button>}
-      {attest && canEdit && <Button title="Attestera" handleClick={handleAttest} active={status.approvedKas && !status.denied}><FaCheckCircle /></Button>}
-      {book && canEdit && <Button title="Bokför" handleClick={handleBooked} active={status.booked && !status.denied} ><FaBook /></Button>}
-      {payed && canEdit && <Button title="Betala" handleClick={handlePayed} active={status.payed && !status.denied}><FaDollarSign /></Button>}
+      {attest && canEdit && <Button title="Attestera" handleClick={handleAttest}  disabled={status.denied} active={status.approvedKas}><FaCheckCircle /></Button>}
+      {book && canEdit && <Button title="Bokför" handleClick={handleBooked} disabled={status.denied} active={status.booked} ><FaBook /></Button>}
+      {payed && canEdit && <Button title="Betala" handleClick={handlePayed} disabled={status.denied} active={status.payed}><FaDollarSign /></Button>}
     </div>
   );
 }

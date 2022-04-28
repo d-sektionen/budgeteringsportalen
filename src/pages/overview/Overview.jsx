@@ -10,8 +10,11 @@ import { useEffect, useState } from 'react';
 const OverView = () => {
     const [entries, setEntries] = useState([])
     const [user, setUser] = useState({})
+    const [options, setOptions] = useState({attesterad: true, bokford:true ,betalad:true, nekad:false})
 
     const updateOverview = () => {
+        const optionString = "?approvedKas="+ Number(options.attesterad) +"&approvedDeg="+ Number(options.bokford) + "&payed=" + Number(options.betalad);
+        //+optionString
         get("/budget/expense-entries/").
             then(r => {
                 const d = r.data;
@@ -28,6 +31,18 @@ const OverView = () => {
                 setUser(r)
             })
     }
+
+    const changeViewOption = (e) => {
+        const attesterad = document.getElementById("Attesterade").checked 
+        const bokford = document.getElementById("Bokförda").checked 
+        const betalad = document.getElementById("Betalade").checked 
+
+        setOptions({attesterad: attesterad, bokford:bokford ,betalad:betalad, nekad:false})       
+    }
+
+    useEffect(()=>{
+        updateOverview()
+    }, [options])
 
     useEffect(() => {
         updateOverview()
@@ -48,16 +63,13 @@ const OverView = () => {
                 <div>
                     <p>Antal utlägg: {entries.length}</p>
                     <div>
-                        <input type="checkbox" id="Attesterade" name="attesterade"
-                            checked></input>
+                        <input type="checkbox" id="Attesterade" name="attesterade" onChange={changeViewOption}></input>
                         <label htmlFor="attesterade">Attesterade</label>
 
-                        <input type="checkbox" id="Bokförda" name="Bokförda"
-                            checked></input>
+                        <input type="checkbox" id="Bokförda" name="Bokförda" onChange={changeViewOption}></input>
                         <label htmlFor="Bokförda">Bokförda</label>
 
-                        <input type="checkbox" id="Betalade" name="Betalade"
-                            checked></input>
+                        <input type="checkbox" id="Betalade" name="Betalade" onChange={changeViewOption}></input>
                         <label htmlFor="Betalade">Betalade</label>
                     </div>
                 </div>

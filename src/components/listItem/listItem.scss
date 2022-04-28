@@ -16,8 +16,6 @@
   background-color: grey;
 }
 
-
-
 .approved {
   background-color: green;
 }
@@ -39,5 +37,12 @@
   margin: 3px;
   padding: 3px;
   font-size: 0.7em;
+}
+
+.deniedLabel {
+  background-color: red;
+  font-size: 0.7em;
+  padding: 3px;
+  margin: 3px;
 }
 
