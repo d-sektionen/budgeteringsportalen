@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/budgeteringsportalen/static/css/main.86ce9e8d.chunk.css",
-    "main.js": "/budgeteringsportalen/static/js/main.1404dc7c.chunk.js",
-    "main.js.map": "/budgeteringsportalen/static/js/main.1404dc7c.chunk.js.map",
+    "main.js": "/budgeteringsportalen/static/js/main.a24230d7.chunk.js",
+    "main.js.map": "/budgeteringsportalen/static/js/main.a24230d7.chunk.js.map",
     "runtime-main.js": "/budgeteringsportalen/static/js/runtime-main.69badbce.js",
     "runtime-main.js.map": "/budgeteringsportalen/static/js/runtime-main.69badbce.js.map",
     "static/js/2.7e926c1e.chunk.js": "/budgeteringsportalen/static/js/2.7e926c1e.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.69badbce.js",
     "static/js/2.7e926c1e.chunk.js",
     "static/css/main.86ce9e8d.chunk.css",
-    "static/js/main.1404dc7c.chunk.js"
+    "static/js/main.a24230d7.chunk.js"
   ]
 }
