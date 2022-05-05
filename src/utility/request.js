@@ -10,7 +10,7 @@ const request = config => {
   // if config.endpoint is not a full path with the "https://" or "http://"
   // prefix the BASE_URL is prepended to the endpoint
   //const BASE_URL = "http://localhost:8000"
-  const BASE_URL = "https://backend.d-sektionen.se/"
+  const BASE_URL = "https://backend.d-sektionen.se"
   const isFullUrl = /^https?:\/\//
   const url = isFullUrl.test(config.endpoint)
     ? config.endpoint
@@ -22,6 +22,7 @@ const request = config => {
   const headers = { ...oldHeaders, Authorization: `Bearer ${token}` }
 
   // Send request using axios library
+
   return axios({ ...config, headers, url })
 }
 

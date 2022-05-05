@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import TopBar from "./components/topbar/topbar.jsx";
 import MainPage from "./pages/mainPage/MainPage";
 import OverView from "./pages/overview/Overview.jsx";

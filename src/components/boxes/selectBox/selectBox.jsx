@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import {get} from "../../../utility/request"
 import './selectBox.scss';
 
 const utskott = [
@@ -20,15 +21,8 @@ const utskott = [
 
 
 const getCommittes = () =>{
-	const url = "http://localhost:8000/committee/all/"
-	const token = window.localStorage.getItem('token')
-  	const headers = {Authorization: `Bearer ${token}`}
 	let committees = []
-	axios({
-		method:'get',
-		url: url,
-		headers: headers,
-	})
+	get("/committee/all/")
 	.then(res=> {
 		console.log(res.data);
 		

@@ -22,14 +22,20 @@ const OverView = () => {
                     e.committee = e.committee.name;
                 }
                 setEntries(d)
-            })
+            }).
+            catch(
+                error => console.log(error)
+            )
     }
 
     const getUser = () => {
         get("/account/me").
             then(r => {
                 setUser(r)
-            })
+            }).
+            catch(
+                error => console.log(error)
+            )
     }
 
     const changeViewOption = (e) => {
