@@ -8,7 +8,7 @@ import OverView from "./pages/overview/Overview.jsx";
 const App=()=> {
   return (
     <div className="App">
-      <BrowserRouter basename="/budgeteringsportalen">
+      <BrowserRouter basename="/">
         <TopBar />
         <Routes>
           <Route exact path="/overview" element={<OverView/>} />
